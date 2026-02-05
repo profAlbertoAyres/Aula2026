@@ -1,0 +1,587 @@
+/* =====================================================
+   VARIÁVEIS GLOBAIS
+   Centralizam cores, fontes e tamanhos do projeto
+===================================================== */
+:root {
+
+     /* BASE */
+    --cor-escura: #0b1220;
+    --cor-secundaria: #1e293b;
+
+    /* DESTAQUES */
+    --cor-destaque: #38bdf8;      /* Energia / links */
+    --cor-destaque-sec: #22c55e;  /* Progresso / ação */
+
+    /* NEUTROS */
+    --cor-clara: #f8fafc;
+    --cor-cinza-claro: #f1f5f9;
+    --cor-texto-sec: #cbd5f5;
+
+    /* ---------- FONTES ---------- */
+
+    --fonte-padrao: Arial, sans-serif;
+    /* Fonte principal do site */
+
+    --fonte-menu: 15px;
+    /* Tamanho da fonte dos links do menu */
+
+    /* ---------- ESPAÇAMENTOS ---------- */
+
+    --padding-padrao: 40px;
+    /* Espaçamento lateral padrão */
+
+    --padding-secao: 80px;
+    /* Espaçamento vertical das seções */
+
+    /* ---------- BORDAS ---------- */
+
+    --borda-arredondada: 10px;
+    /* Arredondamento padrão de cards */
+}
+
+/* =====================================================
+   RESET CSS
+   Remove padrões dos navegadores
+===================================================== */
+* {
+    margin: 0;
+    /* Remove margens padrão */
+
+    padding: 0;
+    /* Remove espaçamentos internos padrão */
+
+    box-sizing: border-box;
+    /* Inclui padding e borda no cálculo do tamanho */
+}
+
+/* =====================================================
+   CONFIGURAÇÕES GERAIS
+===================================================== */
+html {
+    scroll-behavior: smooth;
+    /* Ativa rolagem suave ao clicar em links âncora */
+}
+
+body {
+    font-family: var(--fonte-padrao);
+    /* Aplica a fonte padrão */
+
+    line-height: 1.6;
+    /* Define espaçamento entre linhas */
+}
+
+/* =====================================================
+   HEADER (CABEÇALHO)
+===================================================== */
+.cabecalho {
+    position: sticky;
+    /* Fixa o header no topo da tela */
+
+    top: 2px;
+    /* Alinha no topo */
+
+    width: 100%;
+    /* Ocupa toda a largura da tela */
+
+    background: var(--cor-escura);
+    /* Define a cor de fundo */
+
+    color: var(--cor-clara);
+    /* Define a cor do texto */
+
+    display: flex;
+    /* Ativa layout flexível */
+
+    justify-content: space-between;
+    /* Espaça logo e menu */
+
+    align-items: center;
+    /* Centraliza verticalmente */
+
+    padding: 15px var(--padding-padrao);
+    /* Espaçamento interno */
+
+    z-index: 1000;
+    /* Mantém o header acima dos outros elementos */
+}
+
+/* Logo */
+.logo {
+    font-size: 22px;
+    /* Tamanho da fonte da logo */
+
+    font-weight: bold;
+    /* Texto em negrito */
+}
+
+/* Parte colorida da logo */
+.logo span {
+    color: var(--cor-destaque);
+    /* Aplica cor de destaque */
+}
+
+/* Menu de navegação */
+nav ul {
+    list-style: none;
+    /* Remove os marcadores da lista */
+
+    display: flex;
+    /* Organiza os itens lado a lado */
+
+    gap: 20px;
+    /* Espaço entre os links */
+}
+
+/* Links do menu */
+nav a {
+    color: var(--cor-clara);
+    /* Cor do texto */
+
+    text-decoration: none;
+    /* Remove sublinhado */
+
+    font-weight: bold;
+    /* Texto em negrito */
+
+    font-size: var(--fonte-menu);
+    /* Usa a variável de tamanho do menu */
+}
+
+/* Efeito ao passar o mouse */
+nav a:hover {
+    color: var(--cor-destaque);
+    /* Altera a cor no hover */
+}
+
+/* Menu padrão no desktop */
+nav {
+    display: block;
+}
+
+/* Botão escondido no desktop */
+.btn-menu {
+    display: none;
+}
+
+
+/* =====================================================
+   HERO
+===================================================== */
+.hero {
+    min-height: 100vh;
+    background: linear-gradient(
+        135deg,
+        var(--cor-escura),
+        var(--cor-secundaria)
+    );
+    color: var(--cor-clara);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+    padding: 40px 20px;
+    gap: 20px;
+}
+
+
+/* Título do hero */
+.hero h1 {
+    font-size: 52px;
+    max-width: 700px;
+    line-height: 1.2;
+}
+
+/* Texto do hero */
+.hero p {
+    font-size: 20px;
+    max-width: 500px;
+    opacity: 0.9;
+}
+
+
+/* =====================================================
+   SEÇÕES
+===================================================== */
+.secao {
+    padding: var(--padding-secao) var(--padding-padrao);
+    /* Espaçamento interno da seção */
+
+    text-align: center;
+    /* Centraliza o texto */
+}
+
+/* Título das seções */
+.secao h2 {
+    margin-bottom: 20px;
+    /* Espaço abaixo do título */
+}
+
+/* Seção destacada */
+.destaque {
+    background: var(--cor-cinza-claro);
+    /* Fundo claro */
+}
+
+/* =====================================================
+   CARDS
+===================================================== */
+.cards {
+    display: flex;
+    /* Layout flexível */
+
+    gap: 20px;
+    /* Espaço entre os cards */
+
+    justify-content: center;
+    /* Centraliza os cards */
+
+    flex-wrap: wrap;
+    /* Quebra linha em telas menores */
+}
+
+/* Card individual */
+.card {
+    background: var(--cor-clara);
+    /* Fundo branco */
+
+    padding: 25px;
+    /* Espaçamento interno */
+
+    width: 250px;
+    /* Largura fixa */
+
+    border-radius: var(--borda-arredondada);
+    /* Cantos arredondados */
+
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    /* Sombra suave */
+}
+
+/* =====================================================
+   REDES SOCIAIS
+===================================================== */
+
+/* Container dos ícones */
+.redes {
+    display: flex;
+    /* Organiza os ícones lado a lado */
+
+    justify-content: center;
+    /* Centraliza os ícones horizontalmente */
+
+    gap: 25px;
+    /* Espaço entre os ícones */
+
+    margin-top: 30px;
+    /* Espaçamento acima dos ícones */
+}
+
+/* Links das redes sociais */
+.redes a {
+    width: 55px;
+    /* Largura do botão */
+
+    height: 55px;
+    /* Altura do botão */
+
+    display: flex;
+    /* Permite centralizar o ícone */
+
+    align-items: center;
+    /* Centraliza verticalmente */
+
+    justify-content: center;
+    /* Centraliza horizontalmente */
+
+    background: var(--cor-escura);
+    /* Fundo escuro */
+
+    color: var(--cor-destaque);
+    /* Cor do ícone */
+
+    font-size: 24px;
+    /* Tamanho do ícone */
+
+    border-radius: 50%;
+    /* Deixa o botão circular */
+
+    text-decoration: none;
+    /* Remove sublinhado do link */
+
+    transition: all 0.3s ease;
+    /* Animação suave ao passar o mouse */
+}
+
+/* Efeito hover nos ícones */
+.redes a:hover {
+    background: var(--cor-destaque);
+    /* Muda o fundo no hover */
+
+    color: var(--cor-escura);
+    /* Muda a cor do ícone */
+
+    transform: scale(1.1);
+    /* Aumenta levemente o tamanho */
+}
+
+/* =====================================================
+Menu responsivo 
+===================================================== */
+.menu-resp {
+    display: none;
+}
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+.footer {
+    background: var(--cor-escura);
+    /* Fundo escuro */
+
+    color: var(--cor-clara);
+    /* Texto claro */
+
+    text-align: center;
+    /* Centraliza o conteúdo */
+
+    padding: 30px 20px;
+    /* Espaçamento interno */
+
+    display: flex;
+    /* Ativa flexbox */
+
+    flex-direction: column;
+    /* Organiza em coluna */
+
+    gap: 10px;
+    /* Espaço entre os textos */
+}
+
+/* Nome do projeto */
+.footer-logo {
+    font-size: 18px;
+    /* Tamanho do texto */
+
+    font-weight: bold;
+    /* Negrito */
+}
+
+/* Destaque no nome */
+.footer-logo span {
+    color: var(--cor-destaque);
+    /* Cor vibrante */
+}
+
+/* Texto legal / informativo */
+.footer-texto {
+    font-size: 14px;
+    /* Fonte menor */
+
+    opacity: 0.8;
+    /* Suaviza o texto */
+}
+
+/* =====================================================
+   RESPONSIVIDADE - TABLET
+===================================================== */
+@media (max-width: 1024px) {
+    main {
+        display: flex;
+        align-items: stretch;
+    }
+
+    .cabecalho {
+        display: none;
+    }
+
+
+    /* Menu lateral fixo à direita */
+    .menu-resp {
+        width: 70px;
+        /* Largura apenas para ícones */
+        background: var(--cor-escura);
+        /* Fundo escuro */
+        display: flex;
+        flex-direction: column;
+        /* Elementos em coluna */
+        align-items: center;
+        padding-top: 20px;
+        transition: width 0.3s ease;
+        /* Animação ao expandir */
+        z-index: 1000;
+    }
+
+    .menu-resp ul {
+        position: sticky;
+        top: 10px;
+    }
+
+    /* Botão hamburguer visível no tablet */
+    .menu-resp .btn-menu {
+        display: block;
+        background: none;
+        border: none;
+        color: var(--cor-clara);
+        font-size: 26px;
+        cursor: pointer;
+    }
+
+    /* Lista do menu em formato vertical */
+    .menu-resp ul {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+        /* Espaço entre os ícones */
+        list-style: none;
+    }
+
+    /* Links do menu */
+    .menu-resp a {
+        color: var(--cor-clara);
+        font-size: 22px;
+        /* Ícones maiores */
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+    }
+
+    /* Texto do menu escondido por padrão */
+    .menu-resp a span {
+        display: none;
+    }
+
+    /* Estado expandido do menu */
+    .menu-resp.expandido {
+        width: 200px;
+        /* Menu aberto */
+        align-items: flex-start;
+        padding-left: 20px;
+    }
+
+    /* Texto aparece quando menu está expandido */
+    .menu-resp.expandido a span {
+        display: inline;
+        margin-left: 10px;
+        font-size: 14px;
+    }
+
+     .hero h1 {
+        font-size: 34px;
+    }
+
+    .hero p {
+        font-size: 16px;
+    }
+
+    .btn {
+        width: 100%;
+        max-width: 280px;
+        text-align: center;
+    }
+
+}
+
+/* =====================================================
+   MOBILE UX (até 768px)
+===================================================== */
+@media (max-width: 768px) {
+
+    /* Evita que o menu cubra conteúdo */
+    body {
+        padding-bottom: 80px;
+    }
+
+    /* =========================
+       MENU MOBILE (BOTTOM)
+    ========================= */
+    .menu-resp {
+        position: fixed;
+        bottom: 10px;
+        left: 5%;
+        width: 90%;
+        padding: 10px;
+
+        background: var(--cor-escura);
+        border-radius: 10px;
+    }
+
+    /* Esconde botão hamburguer no mobile */
+    .menu-resp .btn-menu,
+    .li-btn-menu {
+        display: none;
+    }
+
+    /* Lista horizontal */
+    .menu-resp ul {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        gap: 40px;
+    }
+
+    /* Links do menu */
+    .menu-resp a {
+        position: relative;
+        transition: color 0.3s ease, transform 0.2s ease;
+    }
+
+    /* Esconde texto no mobile */
+    .menu-resp a span {
+        display: none;
+    }
+
+    /* =========================
+       INDICADOR ATIVO (BOLINHA)
+    ========================= */
+    .menu-resp a::after {
+        content: '';
+        position: absolute;
+        bottom: -6px;
+
+        width: 6px;
+        height: 6px;
+
+        background: var(--cor-destaque);
+        border-radius: 50%;
+
+        opacity: 0;
+        transform: scale(0);
+        transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    .menu-resp a.ativo {
+        color: var(--cor-destaque);
+    }
+
+    .menu-resp a.ativo::after {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    /* Feedback de toque */
+    .menu-resp a:active {
+        transform: scale(0.9);
+    }
+
+    /* =========================
+       SEÇÕES E CARDS
+    ========================= */
+    .secao {
+        padding: 60px 20px;
+    }
+
+    .cards {
+        gap: 15px;
+    }
+
+    .card {
+        width: 100%;
+        max-width: 320px;
+    }
+}

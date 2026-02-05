@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Personal Trainer</title>
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/layout.css">
+</head>
+
+<body>
+
+    <header class="cabecalho">
+        <div class="logo">Personal<span>Pro</span></div>
+
+
+        <nav id="menu">
+            <ul>
+                <li><a href="#home"><i class="bi bi-house"></i><span> Home</span></a></li>
+                <li><a href="#sobre"><i class="bi bi-person"></i><span> Sobre</span></a></li>
+                <li><a href="#servicos"><i class="bi bi-briefcase"></i><span> Serviços</span></a></li>
+                <li><a href="#depoimentos"><i class="bi bi-chat-quote"></i><span> Depoimentos</span></a></li>
+                <li><a href="#contato"><i class="bi bi-chat"></i><span> Contato</span></a></li>
+            </ul>
+        </nav>
+    </header>
+
+
+
+    <main>
+        <div class="conteudo">
+
+            
+                    <section id="home" class="hero">
+                        <h1>Transforme seu corpo e sua saúde</h1>
+                        <p>Treinamento personalizado para resultados reais</p>
+                    </section>
+            
+                    <section id="sobre" class="secao">
+                        <h2>Sobre mim</h2>
+                        <p>
+                            Personal trainer com mais de 8 anos de experiência,
+                            focado em saúde, disciplina e performance.
+                        </p>
+                    </section>
+            
+                    <section id="servicos" class="secao destaque">
+                        <h2>Serviços</h2>
+            
+                        <div class="cards">
+                            <div class="card">Treino Individual</div>
+                            <div class="card">Treino Online</div>
+                            <div class="card">Avaliação Física</div>
+                        </div>
+                    </section>
+            
+                    <section id="depoimentos" class="secao">
+                        <h2>Depoimentos</h2>
+                        <blockquote>
+                            “Resultados reais em pouco tempo.”
+                            <span>— Carlos M.</span>
+                        </blockquote>
+                    </section>
+            
+                    <section id="contato" class="secao destaque">
+                        <h2>Redes Sociais</h2>
+            
+                        <div class="redes">
+                            <a href="#"><i class="bi bi-instagram"></i></a>
+                            <a href="#"><i class="bi bi-whatsapp"></i></a>
+                            <a href="#"><i class="bi bi-facebook"></i></a>
+                        </div>
+                    </section>
+        </div>
+
+        <nav class="menu-resp" id="menuResp">
+            <ul><!-- Botão hamburguer -->
+                <li class="li-btn-menu">
+                    <button id="btnMenu" class="btn-menu">
+                        <i class="bi bi-list"></i>
+                    </button>
+                </li>
+                    
+                <li><a href="#home"><i class="bi bi-house"></i><span> Home</span></a></li>
+                <li><a href="#sobre"><i class="bi bi-person"></i><span> Sobre</span></a></li>
+                <li><a href="#servicos"><i class="bi bi-briefcase"></i><span> Serviços</span></a></li>
+                <li><a href="#depoimentos"><i class="bi bi-chat-quote"></i><span> Depoimentos</span></a></li>
+                <li><a href="#contato"><i class="bi bi-chat"></i><span> Contato</span></a></li>
+            </ul>
+        </nav>
+    </main>
+
+
+    <footer class="footer">
+        <p class="footer-logo">Personal<span>Pro</span></p>
+
+        <p class="footer-texto">
+            © 2026 PersonalPro • Todos os direitos reservados
+        </p>
+    </footer>
+
+</body>
+<script>
+    // Seleciona o botão do menu
+    const btnMenu = document.getElementById('btnMenu');
+
+    // Seleciona o cabeçalho pelo ID
+    const menuResp = document.getElementById('menuResp');
+
+    // Evento de clique
+    btnMenu.addEventListener('click', () => {
+
+        // Alterna a classe 'expandido'
+        menuResp.classList.toggle('expandido');
+
+    });
+
+</script>
+
+</html>
