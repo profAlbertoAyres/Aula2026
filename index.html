@@ -32,50 +32,117 @@
 
 
 
-    <main>
+    <main class="container">
         <div class="conteudo">
 
-            
-                    <section id="home" class="hero">
-                        <h1>Transforme seu corpo e sua saúde</h1>
-                        <p>Treinamento personalizado para resultados reais</p>
-                    </section>
-            
-                    <section id="sobre" class="secao">
-                        <h2>Sobre mim</h2>
-                        <p>
-                            Personal trainer com mais de 8 anos de experiência,
-                            focado em saúde, disciplina e performance.
+            <section id="home" class="hero">
+                <h1>Transforme seu corpo e sua saúde</h1>
+                <p>Treinamento personalizado para resultados reais</p>
+            </section>
+
+            <section id="sobre" class="secao">
+                <h2>Sobre mim</h2>
+                <p>
+                    Com mais de 8 anos de experiência na área, atuo como Personal Trainer especializado em treinamento
+                    personalizado, com foco em saúde, disciplina e alta performance. Meu trabalho é fundamentado em
+                    planejamento estratégico, acompanhamento individualizado e metodologias atualizadas, garantindo
+                    evolução consistente, segurança e resultados sustentáveis para cada aluno.
+                </p>
+                <!-- NOVO BOTÃO -->
+                <a href="perfil.html" class="btn">
+                    Ver perfil completo
+                </a>
+            </section>
+
+            <section id="servicos" class="secao destaque">
+                <h2>Serviços</h2>
+
+                <div class="cards">
+                    <div class="card">Treino Individual</div>
+                    <div class="card">Treino Online</div>
+                    <div class="card">Avaliação Física</div>
+                </div>
+            </section>
+
+            <section class="depoimentos" id="depoimentos">
+                <h2 class="titulo-secao">O que nossos clientes dizem</h2>
+
+                <div class="container-cards">
+
+                    <div class="card-depoimento">
+                        <div class="aspas">“</div>
+                        <p class="texto">
+                            Excelente atendimento e suporte técnico. O sistema ficou rápido,
+                            organizado e muito mais profissional.
                         </p>
-                    </section>
-            
-                    <section id="servicos" class="secao destaque">
-                        <h2>Serviços</h2>
-            
-                        <div class="cards">
-                            <div class="card">Treino Individual</div>
-                            <div class="card">Treino Online</div>
-                            <div class="card">Avaliação Física</div>
+                        <div class="cliente">
+                            <strong>João Silva</strong>
+                            <span>Empresário</span>
                         </div>
-                    </section>
-            
-                    <section id="depoimentos" class="secao">
-                        <h2>Depoimentos</h2>
-                        <blockquote>
-                            “Resultados reais em pouco tempo.”
-                            <span>— Carlos M.</span>
-                        </blockquote>
-                    </section>
-            
-                    <section id="contato" class="secao destaque">
-                        <h2>Redes Sociais</h2>
-            
-                        <div class="redes">
-                            <a href="#"><i class="bi bi-instagram"></i></a>
-                            <a href="#"><i class="bi bi-whatsapp"></i></a>
-                            <a href="#"><i class="bi bi-facebook"></i></a>
+                    </div>
+
+                    <div class="card-depoimento">
+                        <div class="aspas">“</div>
+                        <p class="texto">
+                            Mudou completamente a forma como organizamos nossos processos.
+                            Recomendo para qualquer empresa.
+                        </p>
+                        <div class="cliente">
+                            <strong>Maria Oliveira</strong>
+                            <span>Gestora de Projetos</span>
                         </div>
-                    </section>
+                    </div>
+
+                    <div class="card-depoimento">
+                        <div class="aspas">“</div>
+                        <p class="texto">
+                            Profissionalismo, rapidez e qualidade. Superou todas as expectativas.
+                        </p>
+                        <div class="cliente">
+                            <strong>Carlos Mendes</strong>
+                            <span>Desenvolvedor</span>
+                        </div>
+                    </div>
+                    <div class="card-depoimento">
+                        <div class="aspas">“</div>
+                        <p class="texto">
+                            Atendimento excepcional desde o primeiro contato. A equipe demonstrou
+                            conhecimento técnico e entregou exatamente o que precisávamos,
+                            dentro do prazo e com alta qualidade.
+                        </p>
+                        <div class="cliente">
+                            <strong>Ana Carolina Souza</strong>
+                            <span>Coordenadora Administrativa</span>
+                        </div>
+                    </div>
+
+                    <div class="card-depoimento">
+                        <div class="aspas">“</div>
+                        <p class="texto">
+                            O projeto trouxe mais organização e eficiência para nossa empresa.
+                            Hoje temos processos mais claros e resultados muito melhores.
+                            Recomendo sem dúvidas.
+                        </p>
+                        <div class="cliente">
+                            <strong>Ricardo Almeida</strong>
+                            <span>Diretor Comercial</span>
+                        </div>
+                    </div>
+
+
+                </div>
+            </section>
+
+
+            <section id="contato" class="secao destaque">
+                <h2>Redes Sociais</h2>
+
+                <div class="redes">
+                    <a href="#"><i class="bi bi-instagram"></i></a>
+                    <a href="#"><i class="bi bi-whatsapp"></i></a>
+                    <a href="#"><i class="bi bi-facebook"></i></a>
+                </div>
+            </section>
         </div>
 
         <nav class="menu-resp" id="menuResp">
@@ -85,7 +152,7 @@
                         <i class="bi bi-list"></i>
                     </button>
                 </li>
-                    
+
                 <li><a href="#home"><i class="bi bi-house"></i><span> Home</span></a></li>
                 <li><a href="#sobre"><i class="bi bi-person"></i><span> Sobre</span></a></li>
                 <li><a href="#servicos"><i class="bi bi-briefcase"></i><span> Serviços</span></a></li>
@@ -112,11 +179,17 @@
     // Seleciona o cabeçalho pelo ID
     const menuResp = document.getElementById('menuResp');
 
+    // pega o <i> que está dentro do botão
+    const icone = btnMenu.querySelector("i");
+
     // Evento de clique
     btnMenu.addEventListener('click', () => {
 
         // Alterna a classe 'expandido'
         menuResp.classList.toggle('expandido');
+        // Alterna entre dois ícones
+        icone.classList.toggle("bi-list");
+        icone.classList.toggle("bi-x");
 
     });
 

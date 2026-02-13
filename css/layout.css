@@ -1,16 +1,16 @@
-/* =====================================================
-   VARIÁVEIS GLOBAIS
-   Centralizam cores, fontes e tamanhos do projeto
-===================================================== */
+/* VARIÁVEIS GLOBAIS
+   Centralizam cores, fontes e tamanhos do projeto */
 :root {
 
-     /* BASE */
+    /* BASE */
     --cor-escura: #0b1220;
     --cor-secundaria: #1e293b;
 
     /* DESTAQUES */
-    --cor-destaque: #38bdf8;      /* Energia / links */
-    --cor-destaque-sec: #22c55e;  /* Progresso / ação */
+    --cor-destaque: #38bdf8;
+    /* Energia / links */
+    --cor-destaque-sec: #22c55e;
+    /* Progresso / ação */
 
     /* NEUTROS */
     --cor-clara: #f8fafc;
@@ -39,10 +39,8 @@
     /* Arredondamento padrão de cards */
 }
 
-/* =====================================================
-   RESET CSS
-   Remove padrões dos navegadores
-===================================================== */
+/* RESET CSS
+   Remove padrões dos navegadores */
 * {
     margin: 0;
     /* Remove margens padrão */
@@ -54,9 +52,7 @@
     /* Inclui padding e borda no cálculo do tamanho */
 }
 
-/* =====================================================
-   CONFIGURAÇÕES GERAIS
-===================================================== */
+/* CONFIGURAÇÕES GERAIS */
 html {
     scroll-behavior: smooth;
     /* Ativa rolagem suave ao clicar em links âncora */
@@ -70,14 +66,12 @@ body {
     /* Define espaçamento entre linhas */
 }
 
-/* =====================================================
-   HEADER (CABEÇALHO)
-===================================================== */
+/* HEADER (CABEÇALHO) */
 .cabecalho {
     position: sticky;
     /* Fixa o header no topo da tela */
 
-    top: 2px;
+    top: 0;
     /* Alinha no topo */
 
     width: 100%;
@@ -163,17 +157,20 @@ nav {
     display: none;
 }
 
+/* MAIN */
 
-/* =====================================================
-   HERO
-===================================================== */
+.container {
+    width: 100%;
+}
+
+
+
+/* HERO */
 .hero {
     min-height: 100vh;
-    background: linear-gradient(
-        135deg,
-        var(--cor-escura),
-        var(--cor-secundaria)
-    );
+    background: linear-gradient(135deg,
+            var(--cor-escura),
+            var(--cor-secundaria));
     color: var(--cor-clara);
 
     display: flex;
@@ -202,9 +199,7 @@ nav {
 }
 
 
-/* =====================================================
-   SEÇÕES
-===================================================== */
+/* SEÇÕES */
 .secao {
     padding: var(--padding-secao) var(--padding-padrao);
     /* Espaçamento interno da seção */
@@ -225,9 +220,30 @@ nav {
     /* Fundo claro */
 }
 
-/* =====================================================
-   CARDS
-===================================================== */
+/* BOTÕES */
+
+.btn {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 12px 25px;
+
+    background: var(--cor-destaque);
+    color: var(--cor-escura);
+
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: var(--borda-arredondada);
+
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    background: var(--cor-destaque-sec);
+    transform: translateY(-2px);
+}
+
+
+/* CARDS */
 .cards {
     display: flex;
     /* Layout flexível */
@@ -258,11 +274,90 @@ nav {
 
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     /* Sombra suave */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* =====================================================
-   REDES SOCIAIS
-===================================================== */
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.12);
+}
+
+/* SEÇÃO DEPOIMENTOS
+==== */
+.depoimentos {
+    padding: 80px 20px;
+    background: #f8f9fa;
+    text-align: center;
+}
+
+.titulo-secao {
+    font-size: 2rem;
+    margin-bottom: 50px;
+    font-weight: 700;
+    color: #222;
+}
+
+/* CONTAINER DOS CARDS
+== */
+.container-cards {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+/* CARD INDIVIDUAL
+====== */
+.card-depoimento {
+    position: relative;
+    background: #ffffff;
+    padding: 40px 30px 30px 30px;
+    width: 320px;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+    text-align: left;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Efeito hover moderno */
+.card-depoimento:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.12);
+}
+
+/* ASPAS DECORATIVAS GRAES */
+.aspas {
+    position: absolute;
+    top: -20px;
+    left: 20px;
+    font-size: 6rem;
+    color: rgba(0, 0, 0, 0.05);
+    font-family: serif;
+    line-height: 1;
+}
+
+/* TEXTO DO DEPOIMENTO */
+.texto {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 25px;
+    line-height: 1.6;
+}
+
+/* INFORMAÇÕES DO CLIENTE */
+.cliente strong {
+    display: block;
+    font-size: 1rem;
+    color: #222;
+}
+
+.cliente span {
+    font-size: 0.9rem;
+    color: #888;
+}
+
+
+/* REDES SOCIAIS */
 
 /* Container dos ícones */
 .redes {
@@ -327,17 +422,13 @@ nav {
     /* Aumenta levemente o tamanho */
 }
 
-/* =====================================================
-Menu responsivo 
-===================================================== */
+/* menu responsivo  */
 .menu-resp {
     display: none;
 }
 
 
-/* =====================================================
-   FOOTER
-===================================================== */
+/* FOOTER */
 
 .footer {
     background: var(--cor-escura);
@@ -386,9 +477,16 @@ Menu responsivo
     /* Suaviza o texto */
 }
 
-/* =====================================================
-   RESPONSIVIDADE - TABLET
-===================================================== */
+
+/* Desktop grande */
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+}
+
+/* RESPONSIVIDADE - TABLET */
 @media (max-width: 1024px) {
     main {
         display: flex;
@@ -402,7 +500,7 @@ Menu responsivo
 
     /* Menu lateral fixo à direita */
     .menu-resp {
-        width: 70px;
+        width: 200px;
         /* Largura apenas para ícones */
         background: var(--cor-escura);
         /* Fundo escuro */
@@ -417,8 +515,15 @@ Menu responsivo
     }
 
     .menu-resp ul {
+        display: flex;
+        flex-direction: column;
         position: sticky;
         top: 10px;
+    }
+
+    .li-btn-menu {
+        display: flex;
+        justify-content: end;
     }
 
     /* Botão hamburguer visível no tablet */
@@ -429,16 +534,6 @@ Menu responsivo
         color: var(--cor-clara);
         font-size: 26px;
         cursor: pointer;
-    }
-
-    /* Lista do menu em formato vertical */
-    .menu-resp ul {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 30px;
-        /* Espaço entre os ícones */
-        list-style: none;
     }
 
     /* Links do menu */
@@ -461,7 +556,7 @@ Menu responsivo
         width: 200px;
         /* Menu aberto */
         align-items: flex-start;
-        padding-left: 20px;
+        padding: 20px;
     }
 
     /* Texto aparece quando menu está expandido */
@@ -471,7 +566,7 @@ Menu responsivo
         font-size: 14px;
     }
 
-     .hero h1 {
+    .hero h1 {
         font-size: 34px;
     }
 
@@ -485,11 +580,13 @@ Menu responsivo
         text-align: center;
     }
 
+    .card-depoimento {
+        width: 500px;
+    }
+
 }
 
-/* =====================================================
-   MOBILE UX (até 768px)
-===================================================== */
+/* MOBILE UX (até 768px) */
 @media (max-width: 768px) {
 
     /* Evita que o menu cubra conteúdo */
@@ -497,9 +594,7 @@ Menu responsivo
         padding-bottom: 80px;
     }
 
-    /* =========================
-       MENU MOBILE (BOTTOM)
-    ========================= */
+    /* MENU MOBILE (BOTTOM) */
     .menu-resp {
         position: fixed;
         bottom: 10px;
@@ -536,9 +631,7 @@ Menu responsivo
         display: none;
     }
 
-    /* =========================
-       INDICADOR ATIVO (BOLINHA)
-    ========================= */
+    /* INDICADOR ATIVO (BOL */
     .menu-resp a::after {
         content: '';
         position: absolute;
@@ -569,9 +662,7 @@ Menu responsivo
         transform: scale(0.9);
     }
 
-    /* =========================
-       SEÇÕES E CARDS
-    ========================= */
+    /* SEÇÕES E CARDS */
     .secao {
         padding: 60px 20px;
     }
