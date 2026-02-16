@@ -80,12 +80,14 @@
 }
 
 /* Mobile */
-@media (max-width: 768px) {
-
+@media (max-width: 1024px) {
     .perfil-hero {
         padding: 60px 20px;
         flex-direction: column;
     }
+}
+@media (max-width: 768px) {
+
 
     .perfil-img img {
         width: 220px;
