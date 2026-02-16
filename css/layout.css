@@ -4,18 +4,19 @@
 
     /* BASE */
     --cor-escura: #0b1220;
-    --cor-secundaria: #1e293b;
+    --cor-secundaria: #223927;
 
     /* DESTAQUES */
-    --cor-destaque: #38bdf8;
+    --cor-destaque: #28a745;
     /* Energia / links */
-    --cor-destaque-sec: #22c55e;
+    --cor-destaque-sec: #218838;
     /* Progresso / ação */
 
     /* NEUTROS */
     --cor-clara: #f8fafc;
     --cor-cinza-claro: #f1f5f9;
     --cor-texto-sec: #cbd5f5;
+    --cor_texto-escuro: #011e1f;
 
     /* ---------- FONTES ---------- */
 
@@ -67,7 +68,7 @@ body {
 }
 
 /* HEADER (CABEÇALHO) */
-.cabecalho {
+.menu {
     position: sticky;
     /* Fixa o header no topo da tela */
 
@@ -77,7 +78,7 @@ body {
     width: 100%;
     /* Ocupa toda a largura da tela */
 
-    background: var(--cor-escura);
+    background-color: var(--cor-escura);
     /* Define a cor de fundo */
 
     color: var(--cor-clara);
@@ -115,7 +116,7 @@ body {
 }
 
 /* Menu de navegação */
-nav ul {
+.menu ul {
     list-style: none;
     /* Remove os marcadores da lista */
 
@@ -127,7 +128,7 @@ nav ul {
 }
 
 /* Links do menu */
-nav a {
+.menu li a {
     color: var(--cor-clara);
     /* Cor do texto */
 
@@ -142,32 +143,32 @@ nav a {
 }
 
 /* Efeito ao passar o mouse */
-nav a:hover {
+.menu li a:hover {
     color: var(--cor-destaque);
     /* Altera a cor no hover */
 }
 
-/* Menu padrão no desktop */
-nav {
-    display: block;
-}
 
 /* Botão escondido no desktop */
 .btn-menu {
     display: none;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 26px;
+    cursor: pointer;
+    padding: 10px;
 }
 
 /* MAIN */
 
-.container {
+.secao {
     width: 100%;
 }
 
 
-
-/* HERO */
-.hero {
-    min-height: 100vh;
+/* page-title */
+.page-title {
     background: linear-gradient(135deg,
             var(--cor-escura),
             var(--cor-secundaria));
@@ -179,20 +180,30 @@ nav {
     align-items: center;
 
     text-align: center;
-    padding: 40px 20px;
+    padding: 80px 20px;
+    /* aumenta respiro */
     gap: 20px;
+
+    min-height: 40vh;
+    /* altura padrão menor */
+}
+
+.page-title-full {
+    height: 100vh;
 }
 
 
-/* Título do hero */
-.hero h1 {
+
+
+/* Título do page-title */
+.page-title h1 {
     font-size: 52px;
     max-width: 700px;
     line-height: 1.2;
 }
 
-/* Texto do hero */
-.hero p {
+/* Texto do page-title */
+.page-title p {
     font-size: 20px;
     max-width: 500px;
     opacity: 0.9;
@@ -220,21 +231,28 @@ nav {
     /* Fundo claro */
 }
 
+/* CONTAINER DOS BOTÕES */
+
+.container-btn {
+    text-align: center;
+    margin-top: 2.5rem;
+}
+
+
+
 /* BOTÕES */
 
 .btn {
-    display: inline-block;
-    margin-top: 20px;
-    padding: 12px 25px;
-
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
     background: var(--cor-destaque);
-    color: var(--cor-escura);
-
+    color: #fff;
+    padding: 0.9rem 1.8rem;
+    border-radius: 8px;
     text-decoration: none;
-    font-weight: bold;
-    border-radius: var(--borda-arredondada);
-
-    transition: all 0.3s ease;
+    font-weight: 600;
+    transition: 0.3s;
 }
 
 .btn:hover {
@@ -359,68 +377,89 @@ nav {
 
 /* REDES SOCIAIS */
 
-/* Container dos ícones */
+/* ===================================
+   CTA CONTATO / REDES SOCIAIS
+=================================== */
+
+/* Seção com mais presença */
+.contato-cta {
+    text-align: center;
+}
+
+/* Subtítulo abaixo do h2 */
+.contato-cta .subtitulo {
+    margin-top: 10px;
+    margin-bottom: 40px;
+    color: var(--cor_texto-escuro);
+    opacity: 0.8;
+}
+
+/* Container das redes */
 .redes {
     display: flex;
-    /* Organiza os ícones lado a lado */
-
     justify-content: center;
-    /* Centraliza os ícones horizontalmente */
-
-    gap: 25px;
-    /* Espaço entre os ícones */
-
-    margin-top: 30px;
-    /* Espaçamento acima dos ícones */
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
 }
 
-/* Links das redes sociais */
-.redes a {
-    width: 55px;
-    /* Largura do botão */
-
-    height: 55px;
-    /* Altura do botão */
-
-    display: flex;
-    /* Permite centralizar o ícone */
-
+/* Botões de rede (agora mais fortes) */
+.rede {
+    display: inline-flex;
     align-items: center;
-    /* Centraliza verticalmente */
+    gap: 10px;
 
-    justify-content: center;
-    /* Centraliza horizontalmente */
+    padding: 14px 22px;
+    border-radius: var(--borda-arredondada);
 
     background: var(--cor-escura);
-    /* Fundo escuro */
+    color: var(--cor-clara);
 
-    color: var(--cor-destaque);
-    /* Cor do ícone */
-
-    font-size: 24px;
-    /* Tamanho do ícone */
-
-    border-radius: 50%;
-    /* Deixa o botão circular */
-
+    font-weight: 600;
     text-decoration: none;
-    /* Remove sublinhado do link */
 
     transition: all 0.3s ease;
-    /* Animação suave ao passar o mouse */
 }
 
-/* Efeito hover nos ícones */
-.redes a:hover {
+/* Ícones */
+.rede i {
+    font-size: 18px;
+}
+
+/* Hover padrão */
+.rede:hover {
+    transform: translateY(-3px);
     background: var(--cor-destaque);
-    /* Muda o fundo no hover */
-
-    color: var(--cor-escura);
-    /* Muda a cor do ícone */
-
-    transform: scale(1.1);
-    /* Aumenta levemente o tamanho */
 }
+
+.rede.instagram {
+    background: #E1306C;
+}
+
+.rede.whatsapp {
+    background: #25D366;
+}
+
+.rede.facebook {
+    background: #1877F2;
+}
+
+.rede.instagram:hover {
+    background: #c72c60;
+    transform: translateY(-3px);
+}
+
+.rede.whatsapp:hover {
+    background: #1ebe5d;
+    transform: translateY(-3px);
+}
+
+.rede.facebook:hover {
+    background: #1666d1;
+    transform: translateY(-3px);
+}
+
+
 
 /* menu responsivo  */
 .menu-resp {
@@ -431,7 +470,8 @@ nav {
 /* FOOTER */
 
 .footer {
-    background: var(--cor-escura);
+    width: 100%;
+    background-color: var(--cor-escura);
     /* Fundo escuro */
 
     color: var(--cor-clara);
@@ -439,6 +479,8 @@ nav {
 
     text-align: center;
     /* Centraliza o conteúdo */
+
+    margin: 0;
 
     padding: 30px 20px;
     /* Espaçamento interno */
@@ -480,7 +522,7 @@ nav {
 
 /* Desktop grande */
 @media (min-width: 1200px) {
-    .container {
+    .secao {
         max-width: 1200px;
         margin: 0 auto;
     }
@@ -490,69 +532,58 @@ nav {
 @media (max-width: 1024px) {
     main {
         display: flex;
-        align-items: stretch;
     }
 
-    .cabecalho {
+    .conteudo {
+        flex: 1;
+        width: auto;
+    }
+
+    /* Menu lateral fixo à direita */
+    .menu {
+        width: 80px;
+        height: 100vh;
+        order: 2;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        padding: 20px 0;
+    }
+
+    .menu p {
         display: none;
     }
 
-
-    /* Menu lateral fixo à direita */
-    .menu-resp {
-        width: 200px;
-        /* Largura apenas para ícones */
-        background: var(--cor-escura);
-        /* Fundo escuro */
-        display: flex;
+    .menu ul {
         flex-direction: column;
-        /* Elementos em coluna */
         align-items: center;
-        padding-top: 20px;
-        transition: width 0.3s ease;
-        /* Animação ao expandir */
-        z-index: 1000;
     }
 
-    .menu-resp ul {
-        display: flex;
-        flex-direction: column;
-        position: sticky;
-        top: 10px;
+    .menu ul li {
+        width: 100%;
     }
 
-    .li-btn-menu {
-        display: flex;
-        justify-content: end;
-    }
 
     /* Botão hamburguer visível no tablet */
-    .menu-resp .btn-menu {
+    .menu .btn-menu {
         display: block;
-        background: none;
-        border: none;
-        color: var(--cor-clara);
-        font-size: 26px;
-        cursor: pointer;
     }
 
     /* Links do menu */
-    .menu-resp a {
-        color: var(--cor-clara);
+    .menu ul li a {
+
         font-size: 22px;
         /* Ícones maiores */
-        text-decoration: none;
-        display: flex;
-        align-items: center;
+        justify-content: flex-start;
     }
 
     /* Texto do menu escondido por padrão */
-    .menu-resp a span {
+    .menu a span {
         display: none;
     }
 
     /* Estado expandido do menu */
-    .menu-resp.expandido {
+    .menu.expandido {
         width: 200px;
         /* Menu aberto */
         align-items: flex-start;
@@ -560,17 +591,17 @@ nav {
     }
 
     /* Texto aparece quando menu está expandido */
-    .menu-resp.expandido a span {
+    .menu.expandido a span {
         display: inline;
         margin-left: 10px;
         font-size: 14px;
     }
 
-    .hero h1 {
+    .page-title h1 {
         font-size: 34px;
     }
 
-    .hero p {
+    .page-title p {
         font-size: 16px;
     }
 
@@ -581,7 +612,7 @@ nav {
     }
 
     .card-depoimento {
-        width: 500px;
+        width: 90%;
     }
 
 }
@@ -591,48 +622,54 @@ nav {
 
     /* Evita que o menu cubra conteúdo */
     body {
-        padding-bottom: 80px;
+        padding-bottom: 100px;
     }
 
     /* MENU MOBILE (BOTTOM) */
-    .menu-resp {
+    .menu {
         position: fixed;
-        bottom: 10px;
-        left: 5%;
+        top: auto;
+        height: auto;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
         width: 90%;
-        padding: 10px;
-
-        background: var(--cor-escura);
-        border-radius: 10px;
+        max-width: 400px;
+        padding: 12px 20px;
+        border-radius: 50px;
+        justify-content: center;
+        flex-direction: row;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     }
 
     /* Esconde botão hamburguer no mobile */
-    .menu-resp .btn-menu,
-    .li-btn-menu {
+    .menu .logo {
         display: none;
     }
 
     /* Lista horizontal */
-    .menu-resp ul {
+    .menu ul {
         display: flex;
         flex-direction: row;
-        justify-content: space-between;
-        gap: 40px;
+        width: 100%;
+        justify-content: space-around;
+        gap: 0;
     }
 
-    /* Links do menu */
-    .menu-resp a {
+    .menu ul li{
+        width: auto;
+    }
+
+    .menu ul li a i {
+        padding: 10px;
+        /* Aumenta a área de clique */
+        font-size: 24px;
+        /* Tamanho para o ícone aparecer bem */
         position: relative;
-        transition: color 0.3s ease, transform 0.2s ease;
-    }
-
-    /* Esconde texto no mobile */
-    .menu-resp a span {
-        display: none;
     }
 
     /* INDICADOR ATIVO (BOL */
-    .menu-resp a::after {
+    .menu a::after {
         content: '';
         position: absolute;
         bottom: -6px;
@@ -648,22 +685,23 @@ nav {
         transition: opacity 0.3s ease, transform 0.3s ease;
     }
 
-    .menu-resp a.ativo {
+    .menu a.ativo {
         color: var(--cor-destaque);
     }
 
-    .menu-resp a.ativo::after {
+    .menu a.ativo::after {
         opacity: 1;
         transform: scale(1);
     }
 
     /* Feedback de toque */
-    .menu-resp a:active {
+    .menu a:active {
         transform: scale(0.9);
     }
 
     /* SEÇÕES E CARDS */
     .secao {
+
         padding: 60px 20px;
     }
 

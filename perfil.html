@@ -12,43 +12,38 @@
 </head>
 
 <body>
-
-    <header class="cabecalho">
-        <div class="logo">Personal<span>Pro</span></div>
-        <nav>
-            <nav id="menu">
-                <ul>
-                    <li><a href="index.html#home"><i class="bi bi-house"></i><span> Home</span></a></li>
-                    <li><a href="index.html#sobre"><i class="bi bi-person"></i><span> Sobre</span></a></li>
-                    <li><a href="index.html#servicos"><i class="bi bi-briefcase"></i><span> Serviços</span></a></li>
-                    <li><a href="index.html#depoimentos"><i class="bi bi-chat-quote"></i><span> Depoimentos</span></a></li>
-                    <li><a href="index.html#contato"><i class="bi bi-chat"></i><span> Contato</span></a></li>
-                </ul>
-            </nav>
-        </nav>
-    </header>
-
     <main class="container">
+        <nav id="menu" class="menu">
+            <div class="logo">
+                <p>Personal<span>Pro</span></p>
+                <button id="btnMenu" class="btn-menu">
+                    <i class="bi bi-list"></i>
+                </button>
+            </div>
+            <ul>
+                <li><a href="index.html"><i class="bi bi-house"></i><span> Home</span></a></li>
+                <li><a href="perfil.html"><i class="bi bi-person"></i><span> Sobre</span></a></li>
+                <li><a href="servicos.html"><i class="bi bi-briefcase"></i><span> Serviços</span></a></li>
+                <li><a href="index.html#depoimentos"><i class="bi bi-chat-quote"></i><span> Depoimentos</span></a>
+                </li>
+                <li><a href="index.html#contato"><i class="bi bi-chat"></i><span> Contato</span></a></li>
+            </ul>
+        </nav>
         <div class="conteudo">
             <!-- HERO PERFIL -->
             <section class="perfil-hero">
-                <div class="perfil-grid">
+                <div class="perfil-img">
+                    <img src="img/perfil/perfilPT.png" alt="Personal Trainer">
+                </div>
 
-                    <div class="perfil-img">
-                        <img src="img/personal.jpg" alt="Personal Trainer">
-                    </div>
+                <div class="perfil-info">
+                    <h1>Especialista em Transformação Física e Alta Performance</h1>
+                    <p>
+                        Com mais de 8 anos de atuação profissional, desenvolvo programas de treinamento personalizados
+                        com foco em saúde, disciplina, performance e resultados sustentáveis.
+                    </p>
 
-                    <div class="perfil-info">
-                        <h1>Especialista em Transformação Física e Alta Performance</h1>
-                        <p>
-                            Com mais de 8 anos de atuação profissional, desenvolvo programas
-                            de treinamento personalizados com foco em saúde, disciplina,
-                            performance e resultados sustentáveis.
-                        </p>
-
-                        <a href="#contato" class="btn">Agendar Avaliação</a>
-                    </div>
-
+                    <a href="#contato" class="btn">Agendar Avaliação</a>
                 </div>
             </section>
 
@@ -87,33 +82,39 @@
                 <h2>Em Ação</h2>
 
                 <div class="galeria">
-                    <img src="img/trabalho1.jpg" alt="">
-                    <img src="img/trabalho2.jpg" alt="">
-                    <img src="img/trabalho3.jpg" alt="">
+                    <img src="img/perfil/trabalho1.png" alt="">
+                    <img src="img/perfil/trabalho2.png" alt="">
+                    <img src="img/perfil/trabalho3.png" alt="">
                 </div>
             </section>
         </div>
-
-        <nav class="menu-resp" id="menuResp">
-            <ul><!-- Botão hamburguer -->
-                <li class="li-btn-menu">
-                    <button id="btnMenu" class="btn-menu">
-                        <i class="bi bi-list"></i>
-                    </button>
-                </li>
-
-                <li><a href="index.html#home"><i class="bi bi-house"></i><span> Home</span></a></li>
-                <li><a href="index.html#sobre"><i class="bi bi-person"></i><span> Sobre</span></a></li>
-                <li><a href="index.html#servicos"><i class="bi bi-briefcase"></i><span> Serviços</span></a></li>
-                <li><a href="index.html#depoimentos"><i class="bi bi-chat-quote"></i><span> Depoimentos</span></a></li>
-                <li><a href="index.html#contato"><i class="bi bi-chat"></i><span> Contato</span></a></li>
-            </ul>
-        </nav>
     </main>
     <footer class="footer">
         <p class="footer-logo">Personal<span>Pro</span></p>
         <p class="footer-texto">© 2026 PersonalPro • Todos os direitos reservados</p>
     </footer>
+    <script>
+        // Seleciona o botão do menu
+        const btnMenu = document.getElementById('btnMenu');
+
+        // Seleciona o cabeçalho pelo ID
+        const menuResp = document.getElementById('menu');
+
+        // pega o <i> que está dentro do botão
+        const icone = btnMenu.querySelector("i");
+
+        // Evento de clique
+        btnMenu.addEventListener('click', () => {
+
+            // Alterna a classe 'expandido'
+            menuResp.classList.toggle('expandido');
+            // Alterna entre dois ícones
+            icone.classList.toggle("bi-list");
+            icone.classList.toggle("bi-x");
+
+        });
+
+    </script>
 
 </body>
 

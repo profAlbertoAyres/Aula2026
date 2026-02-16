@@ -1,0 +1,61 @@
+.titulo-secao {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+/* CONTAINER FLEX */
+.servicos-flex {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+
+/* BLOCO INDIVIDUAL */
+.servico-bloco {
+    flex: 0 0 calc(50% - 1rem);
+    /* 2 por linha */
+    background: #fff;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+
+}
+
+.servico-bloco:hover {
+    transform: translateY(-4px);
+}
+
+.servico-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    justify-content: center;
+}
+
+.servico-header h3{
+    color: var(--cor-destaque);
+}
+
+.descricao {
+    margin-bottom: 1rem;
+    color: #555;
+}
+
+.lista-servico {
+    list-style: none;
+    padding: 0;
+    text-align: justify;
+}
+
+.lista-servico li {
+    margin-bottom: 0.5rem;
+}
+
+@media (max-width: 768px) {
+    .servico-bloco {
+        flex: 0 0 100%;
+    }
+
+}

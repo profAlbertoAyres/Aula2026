@@ -4,7 +4,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Personal Trainer</title>
     <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
@@ -14,12 +13,14 @@
 </head>
 
 <body>
-
-    <header class="cabecalho">
-        <div class="logo">Personal<span>Pro</span></div>
-
-
-        <nav id="menu">
+    <main class="container">
+        <nav id="menu" class="menu">
+            <div class="logo">
+                <p>Personal<span>Pro</span></p>
+                    <button id="btnMenu" class="btn-menu">
+                        <i class="bi bi-list"></i>
+                    </button>
+            </div>
             <ul>
                 <li><a href="#home"><i class="bi bi-house"></i><span> Home</span></a></li>
                 <li><a href="#sobre"><i class="bi bi-person"></i><span> Sobre</span></a></li>
@@ -28,14 +29,8 @@
                 <li><a href="#contato"><i class="bi bi-chat"></i><span> Contato</span></a></li>
             </ul>
         </nav>
-    </header>
-
-
-
-    <main class="container">
         <div class="conteudo">
-
-            <section id="home" class="hero">
+            <section id="home" class="page-title page-title-full">
                 <h1>Transforme seu corpo e sua saúde</h1>
                 <p>Treinamento personalizado para resultados reais</p>
             </section>
@@ -48,10 +43,12 @@
                     planejamento estratégico, acompanhamento individualizado e metodologias atualizadas, garantindo
                     evolução consistente, segurança e resultados sustentáveis para cada aluno.
                 </p>
-                <!-- NOVO BOTÃO -->
-                <a href="perfil.html" class="btn">
-                    Ver perfil completo
-                </a>
+                <!-- BOTÃO -->
+                <div class="container-btn">
+                    <a href="perfil.html" class="btn">
+                        Ver perfil completo
+                    </a>
+                </div>
             </section>
 
             <section id="servicos" class="secao destaque">
@@ -62,9 +59,16 @@
                     <div class="card">Treino Online</div>
                     <div class="card">Avaliação Física</div>
                 </div>
+                <!-- BOTÃO -->
+                <div class="container-btn">
+                    <a href="servicos.html" class="btn">
+                        Ver todos os serviços
+                        <i class="bi bi-arrow-right"></i>
+                    </a>
+                </div>
             </section>
 
-            <section class="depoimentos" id="depoimentos">
+            <section class="secao depoimentos" id="depoimentos">
                 <h2 class="titulo-secao">O que nossos clientes dizem</h2>
 
                 <div class="container-cards">
@@ -77,7 +81,6 @@
                         </p>
                         <div class="cliente">
                             <strong>João Silva</strong>
-                            <span>Empresário</span>
                         </div>
                     </div>
 
@@ -89,7 +92,6 @@
                         </p>
                         <div class="cliente">
                             <strong>Maria Oliveira</strong>
-                            <span>Gestora de Projetos</span>
                         </div>
                     </div>
 
@@ -100,7 +102,6 @@
                         </p>
                         <div class="cliente">
                             <strong>Carlos Mendes</strong>
-                            <span>Desenvolvedor</span>
                         </div>
                     </div>
                     <div class="card-depoimento">
@@ -112,7 +113,6 @@
                         </p>
                         <div class="cliente">
                             <strong>Ana Carolina Souza</strong>
-                            <span>Coordenadora Administrativa</span>
                         </div>
                     </div>
 
@@ -125,7 +125,6 @@
                         </p>
                         <div class="cliente">
                             <strong>Ricardo Almeida</strong>
-                            <span>Diretor Comercial</span>
                         </div>
                     </div>
 
@@ -134,32 +133,41 @@
             </section>
 
 
-            <section id="contato" class="secao destaque">
-                <h2>Redes Sociais</h2>
+            <section id="contato" class="secao destaque contato-cta">
+
+                <h2>Vamos começar sua transformação?</h2>
+
+                <p class="subtitulo">
+                    Entre em contato pelas redes ou agende sua avaliação personalizada.
+                </p>
 
                 <div class="redes">
-                    <a href="#"><i class="bi bi-instagram"></i></a>
-                    <a href="#"><i class="bi bi-whatsapp"></i></a>
-                    <a href="#"><i class="bi bi-facebook"></i></a>
+                    <a href="#" class="rede instagram">
+                        <i class="bi bi-instagram"></i>
+                        Instagram
+                    </a>
+
+                    <a href="#" class="rede whatsapp">
+                        <i class="bi bi-whatsapp"></i>
+                        WhatsApp
+                    </a>
+
+                    <a href="#" class="rede facebook">
+                        <i class="bi bi-facebook"></i>
+                        Facebook
+                    </a>
                 </div>
+
+                <div class="container-btn">
+                    <a href="contato.html" class="btn">
+                        Agendar Avaliação
+                        <i class="bi bi-arrow-right"></i>
+                    </a>
+                </div>
+
             </section>
+
         </div>
-
-        <nav class="menu-resp" id="menuResp">
-            <ul><!-- Botão hamburguer -->
-                <li class="li-btn-menu">
-                    <button id="btnMenu" class="btn-menu">
-                        <i class="bi bi-list"></i>
-                    </button>
-                </li>
-
-                <li><a href="#home"><i class="bi bi-house"></i><span> Home</span></a></li>
-                <li><a href="#sobre"><i class="bi bi-person"></i><span> Sobre</span></a></li>
-                <li><a href="#servicos"><i class="bi bi-briefcase"></i><span> Serviços</span></a></li>
-                <li><a href="#depoimentos"><i class="bi bi-chat-quote"></i><span> Depoimentos</span></a></li>
-                <li><a href="#contato"><i class="bi bi-chat"></i><span> Contato</span></a></li>
-            </ul>
-        </nav>
     </main>
 
 
@@ -170,29 +178,28 @@
             © 2026 PersonalPro • Todos os direitos reservados
         </p>
     </footer>
-
+    <script>
+        // Seleciona o botão do menu
+        const btnMenu = document.getElementById('btnMenu');
+    
+        // Seleciona o cabeçalho pelo ID
+        const menuResp = document.getElementById('menu');
+    
+        // pega o <i> que está dentro do botão
+        const icone = btnMenu.querySelector("i");
+    
+        // Evento de clique
+        btnMenu.addEventListener('click', () => {
+    
+            // Alterna a classe 'expandido'
+            menuResp.classList.toggle('expandido');
+            // Alterna entre dois ícones
+            icone.classList.toggle("bi-list");
+            icone.classList.toggle("bi-x");
+    
+        });
+    
+    </script>
 </body>
-<script>
-    // Seleciona o botão do menu
-    const btnMenu = document.getElementById('btnMenu');
-
-    // Seleciona o cabeçalho pelo ID
-    const menuResp = document.getElementById('menuResp');
-
-    // pega o <i> que está dentro do botão
-    const icone = btnMenu.querySelector("i");
-
-    // Evento de clique
-    btnMenu.addEventListener('click', () => {
-
-        // Alterna a classe 'expandido'
-        menuResp.classList.toggle('expandido');
-        // Alterna entre dois ícones
-        icone.classList.toggle("bi-list");
-        icone.classList.toggle("bi-x");
-
-    });
-
-</script>
 
 </html>

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contato - PersonalPro</title>
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/contato.css">
+</head>
+
+<body>
+
+
+    <main class="container">
+
+        <nav id="menu" class="menu">
+            <div class="logo">
+                <p>Personal<span>Pro</span></p>
+                <button id="btnMenu" class="btn-menu">
+                    <i class="bi bi-list"></i>
+                </button>
+            </div>
+            <ul>
+                <li><a href="index.html"><i class="bi bi-house"></i><span> Home</span></a></li>
+                <li><a href="perfil.html"><i class="bi bi-person"></i><span> Sobre</span></a></li>
+                <li><a href="servicos.html"><i class="bi bi-briefcase"></i><span> Serviços</span></a></li>
+                <li><a href="index.html#depoimentos"><i class="bi bi-chat-quote"></i><span> Depoimentos</span></a>
+                </li>
+                <li><a href="index.html#contato"><i class="bi bi-chat"></i><span> Contato</span></a></li>
+            </ul>
+        </nav>
+        <!-- ================= HERO / TÍTULO ================= -->
+        <section class="page-title">
+            <h1>Entre em Contato</h1>
+            <p>Vamos conversar sobre seus objetivos e montar sua estratégia ideal</p>
+        </section>
+
+        <div class="conteudo">
+            <!-- ================= SEÇÃO CONTATO ================= -->
+            <section class="secao contato">
+
+                <div class="contato-container">
+
+                    <!-- INFORMAÇÕES -->
+                    <div class="contato-info">
+
+                        <div class="info-item">
+                            <i class="bi bi-whatsapp"></i>
+                            <div>
+                                <strong>WhatsApp</strong>
+                                <span>(69) 99999-9999</span>
+                            </div>
+                        </div>
+
+                        <div class="info-item">
+                            <i class="bi bi-envelope"></i>
+                            <div>
+                                <strong>Email</strong>
+                                <span>contato@personalpro.com</span>
+                            </div>
+                        </div>
+
+                        <div class="info-item">
+                            <i class="bi bi-geo-alt"></i>
+                            <div>
+                                <strong>Localização</strong>
+                                <span>Cacoal - RO</span>
+                            </div>
+                        </div>
+
+                        <div class="info-item">
+                            <i class="bi bi-clock"></i>
+                            <div>
+                                <strong>Horário</strong>
+                                <span>Seg a Sex • 06h às 20h</span>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <!-- FORMULÁRIO -->
+                    <form class="form-contato">
+
+                        <div class="campo">
+                            <label>Nome Completo</label>
+                            <input type="text" required>
+                        </div>
+
+                        <div class="campo">
+                            <label>Telefone</label>
+                            <input type="tel" required>
+                        </div>
+
+                        <div class="campo">
+                            <label>Qual seu objetivo?</label>
+                            <select>
+                                <option>Emagrecimento</option>
+                                <option>Hipertrofia</option>
+                                <option>Condicionamento</option>
+                            </select>
+                        </div>
+
+                        <div class="campo">
+                            <label>Mensagem</label>
+                            <textarea rows="4"></textarea>
+                        </div>
+
+                        <button type="submit" class="btn-enviar">Enviar Mensagem</button>
+
+                    </form>
+
+                </div>
+
+            </section>
+
+        </div>
+    </main>
+    <!-- ================= FOOTER ================= -->
+    <footer class="footer">
+        <p class="footer-logo">Personal<span>Pro</span></p>
+        <p>© 2026 PersonalPro • Todos os direitos reservados</p>
+    </footer>
+    <script>
+        // Seleciona o botão do menu
+        const btnMenu = document.getElementById('btnMenu');
+
+        // Seleciona o cabeçalho pelo ID
+        const menuResp = document.getElementById('menu');
+
+        // pega o <i> que está dentro do botão
+        const icone = btnMenu.querySelector("i");
+
+        // Evento de clique
+        btnMenu.addEventListener('click', () => {
+
+            // Alterna a classe 'expandido'
+            menuResp.classList.toggle('expandido');
+            // Alterna entre dois ícones
+            icone.classList.toggle("bi-list");
+            icone.classList.toggle("bi-x");
+
+        });
+
+    </script>
+</body>
+
+</html>
