@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/admin.css">
+    <title>Painel</title>
+</head>
+
+<body class="admin-body">
+
+    <aside class="admin-sidebar" id="admin-sidebar">
+        <div class="admin-sidebar-header">
+            <button id="toggle-admin-sidebar" class="btn-icon"><i class="bi bi-list"></i></button>
+            <span class="logo-admin">Personal<span>Pro</span></span>
+            <small>
+                Painel Admin
+            </small>
+        </div>
+
+        <nav class="admin-sidebar-nav">
+            <ul>
+                <li>
+                    <a href="#" class=""><i class="bi bi-speedometer2"></i><span> Dashboard</span></a>
+                </li>
+                <li class="separator"></li>
+                <li><a href="#"><i class="bi bi-person-gear"></i><span> Administradores</span></a></li>
+                <li><a href="#"><i class="bi bi-person-badge"></i><span> Personal trainers</span></a></li>
+                <li><a href="#"><i class="bi bi-person"></i><span> Alunos</span></a></li>
+                <li class="separator"></li>
+                <li><a href="#"><i class="bi bi-activity"></i><span> Exercicio</span></a></li>
+                <li><a href="#"><i class="bi bi-heart-pulse"></i><span> Treino</span></a></li>
+                <li class="separator"></li>
+                <li><a href="#"><i class="bi bi-calendar-event"></i><span> Agenda</span></a></li>
+                <li><a href="#"><i class="bi bi-clipboard-data"></i><span> Avaliação</span></a></li>
+                <li><a href="#"><i class="bi bi-bi-chat-quote"></i><span> Depoimento</span></a></li>
+
+                <li class="separator"></li>
+                <li><a href="#"><i class="bi bi-cash-coin"></i><span> Mensalidade</span></a></li>
+                <li class="separator"></li>
+                <li><a href="#"><i class="bi bi-box-arrow-up-right"></i><span> Ver Website</span></a></li>
+            </ul>
+        </nav>
+
+        <div class="admin-sidebar-footer">
+            <div class="user-info">
+                <i class="bi bi-person-circle"></i>
+                <span>Admin</span>
+            </div>
+            <a href="#" class="link_adm">
+                <i class="bi bi-key"></i>
+                <span>Alterar Senha</span>
+            </a>
+            <form action="#" method="post">
+                <button type="submit" class="logout-btn">
+                    <i class="bi bi-box-arrow-left"></i><span> Sair</span>
+                </button>
+            </form>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <header class="top-header" id="top-header">
+            <div class="top-actions">
+                <span class="date"></span>
+                <i class="bi bi-bell"></i>
+            </div>
+        </header>
+
+        <div class="admin-container">
+            <div class="msn">
+            </div>
+            <div class="title-painel-admin">
+                <div>
+                    <h2 style="color: var(--sidebar-bg);">Olá, Prof. {{ user.first_name }}! 👋</h2>
+                    <p style="color: var(--text-muted);">Sua consultoria tem <strong>{{
+                            user.personal_user.student_set.count|default:"0" }}</strong> alunos ativos.</p>
+                </div>
+            </div>
+
+            <div class="linha-cards">
+                <div class="card-item">
+                    <h4><i class="bi bi-people"></i> Meus Últimos Alunos</h4>
+                    <ul style="list-style: none;">
+                        <li>
+                            <span>João Silva</span>
+                            <span class="badge">Treino A</span>
+                        </li>
+                        <li>
+                            <span>João Silva</span>
+                            <span class="badge">Treino A</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="card-item" >
+                    <h4>Lembretes</h4>
+                    <div class="lembretes">
+                        <i class="bi bi-info-circle"></i> Você tem 3 avaliações físicas para realizar esta semana.
+                    </div>
+                </div>
+            </div>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Script básico para o toggle da admin-sidebar no mobile
+        document.getElementById('toggle-admin-sidebar').addEventListener('click', function () {
+            document.getElementById('admin-sidebar').classList.toggle('active');
+            document.getElementById('top-header').classList.toggle('admin-sidebar-open')
+        });
+    </script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+
+</body>
+
+</html>
