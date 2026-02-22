@@ -1,171 +1,224 @@
--- 1. CRIAÇÃO DO BANCO E DEFINIÇÕES INICIAIS
+
+-- CRIAÇÃO DO BANCO
 CREATE DATABASE IF NOT EXISTS personal_trainer;
 USE personal_trainer;
 
--- 2. TABELA: usuario (Base para Alunos e Personais)
+SET FOREIGN_KEY_CHECKS = 0;
+
+-- TABELA USUARIO
 DROP TABLE IF EXISTS usuario;
 CREATE TABLE usuario (
-  pk_usuario int(11) NOT NULL AUTO_INCREMENT,
-  nome varchar(100) NOT NULL,
-  email varchar(100) NOT NULL,
-  senha varchar(255) NOT NULL,
-  tipo_usuario enum('ALUNO','PERSONAL','ADMIN') NOT NULL,
-  ativo tinyint(1) DEFAULT 1,
-  criado_em datetime DEFAULT current_timestamp(),
-  PRIMARY KEY (pk_usuario),
-  UNIQUE KEY email (email),
-  KEY idx_usuario_tipo (tipo_usuario)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+    pk_usuario INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    senha VARCHAR(255) NOT NULL,
+    tipo_usuario ENUM('ALUNO','PERSONAL','ADMIN') NOT NULL,
+    ativo TINYINT(1) DEFAULT 1,
+    criado_em DATETIME DEFAULT CURRENT_TIMESTAMP
+);
 
--- 3. TABELA: personal
+-- TABELA PERSONAL
 DROP TABLE IF EXISTS personal;
 CREATE TABLE personal (
-  pk_personal int(11) NOT NULL AUTO_INCREMENT,
-  fk_usuario int(11) DEFAULT NULL,
-  cref varchar(20) DEFAULT NULL,
-  especialidade varchar(100) DEFAULT NULL,
-  telefone varchar(20) DEFAULT NULL,
-  criado_em datetime DEFAULT current_timestamp(),
-  PRIMARY KEY (pk_personal),
-  UNIQUE KEY fk_usuario (fk_usuario),
-  CONSTRAINT fk_personal_usuario FOREIGN KEY (fk_usuario) REFERENCES usuario (pk_usuario) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+    pk_personal INT AUTO_INCREMENT PRIMARY KEY,
+    fk_personal_usuario INT NOT NULL,
+    cref VARCHAR(20),
+    especialidade VARCHAR(100),
+    celular VARCHAR(20),
+    criado_em DATETIME DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT fk_personal_usuario
+        FOREIGN KEY (fk_personal_usuario)
+        REFERENCES usuario(pk_usuario)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE
+);
 
--- 4. TABELA: aluno
+-- TABELA ALUNO
 DROP TABLE IF EXISTS aluno;
 CREATE TABLE aluno (
-  pk_aluno int(11) NOT NULL AUTO_INCREMENT,
-  fk_usuario int(11) DEFAULT NULL,
-  sexo enum('M','F') DEFAULT NULL,
-  data_nascimento date DEFAULT NULL,
-  telefone varchar(20) DEFAULT NULL,
-  objetivo text DEFAULT NULL,
-  criado_em datetime DEFAULT current_timestamp(),
-  PRIMARY KEY (pk_aluno),
-  UNIQUE KEY fk_usuario (fk_usuario),
-  CONSTRAINT fk_aluno_usuario FOREIGN KEY (fk_usuario) REFERENCES usuario (pk_usuario) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+    pk_aluno INT AUTO_INCREMENT PRIMARY KEY,
+    fk_aluno_usuario INT NOT NULL,
+    sexo ENUM('M','F','OUTRO'),
+    data_nascimento DATE,
+    celular VARCHAR(20),
+    objetivo TEXT,
+    criado_em DATETIME DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT fk_aluno_usuario
+        FOREIGN KEY (fk_aluno_usuario)
+        REFERENCES usuario(pk_usuario)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE
+);
 
--- 5. TABELA: agenda
-DROP TABLE IF EXISTS agenda;
-CREATE TABLE agenda (
-  pk_agenda int(11) NOT NULL AUTO_INCREMENT,
-  fk_aluno int(11) NOT NULL,
-  fk_personal int(11) NOT NULL,
-  inicio_agendamento datetime NOT NULL,
-  fim_agendamento datetime NOT NULL,
-  status enum('AGENDADO','REALIZADO','CANCELADO') DEFAULT 'AGENDADO',
-  observacao text DEFAULT NULL,
-  PRIMARY KEY (pk_agenda),
-  KEY fk_agenda_aluno (fk_aluno),
-  KEY fk_agenda_personal (fk_personal),
-  CONSTRAINT fk_agenda_aluno FOREIGN KEY (fk_aluno) REFERENCES aluno (pk_aluno) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT fk_agenda_personal FOREIGN KEY (fk_personal) REFERENCES personal (pk_personal) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- 6. TABELA: avaliacao (Com campo IMC para automação)
-DROP TABLE IF EXISTS avaliacao;
-CREATE TABLE avaliacao (
-  id_avaliacao int(11) NOT NULL AUTO_INCREMENT,
-  fk_aluno int(11) NOT NULL,
-  fk_personal int(11) DEFAULT NULL,
-  data_avaliacao date NOT NULL,
-  peso decimal(5,2) NOT NULL,
-  altura decimal(3,2) NOT NULL,
-  imc decimal(5,2) DEFAULT NULL,
-  percentual_gordura decimal(5,2) DEFAULT NULL,
-  massa_magra decimal(5,2) DEFAULT NULL,
-  circ_peitoral decimal(5,2) DEFAULT NULL,
-  circ_cintura decimal(5,2) DEFAULT NULL,
-  circ_abdominal decimal(5,2) DEFAULT NULL,
-  circ_quadril decimal(5,2) DEFAULT NULL,
-  circ_braco_direito decimal(5,2) DEFAULT NULL,
-  circ_braco_esquerdo decimal(5,2) DEFAULT NULL,
-  circ_coxa_direita decimal(5,2) DEFAULT NULL,
-  circ_coxa_esquerda decimal(5,2) DEFAULT NULL,
-  observacoes text DEFAULT NULL,
-  PRIMARY KEY (id_avaliacao),
-  CONSTRAINT fk_avaliacao_aluno FOREIGN KEY (fk_aluno) REFERENCES aluno (pk_aluno) ON DELETE CASCADE,
-  CONSTRAINT fk_avaliacao_personal FOREIGN KEY (fk_personal) REFERENCES personal (pk_personal) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- 7. TABELA: exercicio
+-- TABELA EXERCICIO
 DROP TABLE IF EXISTS exercicio;
 CREATE TABLE exercicio (
-  pk_exercicio int(11) NOT NULL AUTO_INCREMENT,
-  nome varchar(100) NOT NULL,
-  descricao text DEFAULT NULL,
-  grupo_muscular varchar(50) DEFAULT NULL,
-  criado_em datetime DEFAULT current_timestamp(),
-  PRIMARY KEY (pk_exercicio)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+    pk_exercicio INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    descricao TEXT,
+    grupo_muscular VARCHAR(50),
+    criado_em DATETIME DEFAULT CURRENT_TIMESTAMP
+);
 
--- 8. TABELA: treino e treino_exercicio (Relacionamento N:N)
+-- TABELA TREINO (Treino do dia)
 DROP TABLE IF EXISTS treino;
 CREATE TABLE treino (
-  pk_treino int(11) NOT NULL AUTO_INCREMENT,
-  fk_aluno int(11) NOT NULL,
-  fk_personal int(11) NOT NULL,
-  descricao text NOT NULL,
-  data_inicio date NOT NULL,
-  data_fim date DEFAULT NULL,
-  PRIMARY KEY (pk_treino),
-  CONSTRAINT fk_treino_aluno FOREIGN KEY (fk_aluno) REFERENCES aluno (pk_aluno) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT fk_treino_personal FOREIGN KEY (fk_personal) REFERENCES personal (pk_personal) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+    pk_treino INT AUTO_INCREMENT PRIMARY KEY,
+    fk_treino_aluno INT NOT NULL,
+    fk_treino_personal INT NOT NULL,
+    descricao TEXT,
+    data_inicio DATE,
+    data_final DATE,
+    status ENUM('ATIVO','FINALIZADO','CANCELADO') DEFAULT 'ATIVO',
+    criado_em DATETIME DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT fk_treino_aluno
+        FOREIGN KEY (fk_treino_aluno)
+        REFERENCES aluno(pk_aluno)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE,
+    CONSTRAINT fk_treino_personal
+        FOREIGN KEY (fk_treino_personal)
+        REFERENCES personal(pk_personal)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE
+);
 
+-- TABELA SESSAO_TREINO (Divisão do treino)
+DROP TABLE IF EXISTS sessao_treino;
+CREATE TABLE sessao_treino (
+    pk_sessao_treino INT AUTO_INCREMENT PRIMARY KEY,
+    fk_sessao_treino_treino INT NOT NULL,
+    nome_sessao VARCHAR(100) NOT NULL, -- Ex: Costas, Peito, Pernas
+    ordem INT NOT NULL,
+    observacoes TEXT,
+    CONSTRAINT fk_sessao_treino_treino
+        FOREIGN KEY (fk_sessao_treino_treino)
+        REFERENCES treino(pk_treino)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE
+);
+
+-- TABELA TREINO_EXERCICIO (Exercícios do sessao)
 DROP TABLE IF EXISTS treino_exercicio;
 CREATE TABLE treino_exercicio (
-  pk_treino_exercicio int(11) NOT NULL AUTO_INCREMENT,
-  fk_treino int(11) NOT NULL,
-  fk_exercicio int(11) NOT NULL,
-  series int(11) NOT NULL,
-  repeticoes int(11) NOT NULL,
-  carga decimal(6,2) DEFAULT NULL,
-  descanso_segundos int(11) DEFAULT NULL,
-  PRIMARY KEY (pk_treino_exercicio),
-  CONSTRAINT fk_te_exercicio FOREIGN KEY (fk_exercicio) REFERENCES exercicio (pk_exercicio) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT fk_te_treino FOREIGN KEY (fk_treino) REFERENCES treino (pk_treino) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+    pk_treino_exercicio INT AUTO_INCREMENT PRIMARY KEY,
+    fk_treino_exercicio_sessao INT NOT NULL,
+    fk_treino_exercicio_exercicio INT NOT NULL,
+    series INT NOT NULL,
+    repeticoes INT NOT NULL,
+    carga DECIMAL(6,2),
+    tempo_descanso INT,
+    orientacoes TEXT,
+    ordem INT,
+    CONSTRAINT fk_treino_exercicio_sessao
+        FOREIGN KEY (fk_treino_exercicio_sessao)
+        REFERENCES sessao_treino(pk_sessao_treino)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE,
+    CONSTRAINT fk_treino_exercicio_exercicio
+        FOREIGN KEY (fk_treino_exercicio_exercicio)
+        REFERENCES exercicio(pk_exercicio)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE
+);
 
--- 9. TABELA: mensalidade (Financeiro)
+-- TABELA AGENDA
+DROP TABLE IF EXISTS agenda;
+CREATE TABLE agenda (
+    pk_agenda INT AUTO_INCREMENT PRIMARY KEY,
+    fk_agenda_aluno INT NOT NULL,
+    fk_agenda_personal INT NOT NULL,
+    data_inicio DATETIME NOT NULL,
+    data_fim DATETIME NOT NULL,
+    status ENUM('AGENDADO','REALIZADO','CANCELADO') DEFAULT 'AGENDADO',
+    observacao TEXT,
+    criado_em DATETIME DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT fk_agenda_aluno
+        FOREIGN KEY (fk_agenda_aluno)
+        REFERENCES aluno(pk_aluno)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE,
+    CONSTRAINT fk_agenda_personal
+        FOREIGN KEY (fk_agenda_personal)
+        REFERENCES personal(pk_personal)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE
+);
+
+-- TABELA AVALIACAO
+DROP TABLE IF EXISTS avaliacao;
+CREATE TABLE avaliacao (
+    id_avaliacao INT AUTO_INCREMENT PRIMARY KEY,
+    fk_avaliacao_aluno INT NOT NULL,
+    fk_avaliacao_personal INT DEFAULT NULL,
+    data_avaliacao DATE NOT NULL,
+    peso DECIMAL(5,2) NOT NULL,
+    altura DECIMAL(3,2) NOT NULL,
+    imc DECIMAL(5,2),
+    percentual_gordura DECIMAL(5,2),
+    massa_magra DECIMAL(5,2),
+    circ_peitoral DECIMAL(5,2),
+    circ_cintura DECIMAL(5,2),
+    circ_abdominal DECIMAL(5,2),
+    circ_quadril DECIMAL(5,2),
+    circ_braco_direito DECIMAL(5,2),
+    circ_braco_esquerdo DECIMAL(5,2),
+    circ_coxa_direita DECIMAL(5,2),
+    circ_coxa_esquerda DECIMAL(5,2),
+    observacoes TEXT,
+    CONSTRAINT fk_avaliacao_aluno
+        FOREIGN KEY (fk_avaliacao_aluno)
+        REFERENCES aluno(pk_aluno)
+        ON DELETE CASCADE,
+    CONSTRAINT fk_avaliacao_personal
+        FOREIGN KEY (fk_avaliacao_personal)
+        REFERENCES personal(pk_personal)
+        ON DELETE SET NULL
+        ON UPDATE CASCADE
+);
+
+-- TABELA MENSALIDADE
 DROP TABLE IF EXISTS mensalidade;
 CREATE TABLE mensalidade (
-  pk_mensalidade int(11) NOT NULL AUTO_INCREMENT,
-  fk_aluno int(11) NOT NULL,
-  mes_referencia char(7) NOT NULL,
-  valor decimal(10,2) NOT NULL,
-  data_vencimento date NOT NULL,
-  data_pagamento date DEFAULT NULL,
-  status enum('PENDENTE','PAGO','ATRASADO') DEFAULT 'PENDENTE',
-  PRIMARY KEY (pk_mensalidade),
-  CONSTRAINT fk_mensalidade_aluno FOREIGN KEY (fk_aluno) REFERENCES aluno (pk_aluno) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+    pk_mensalidade INT AUTO_INCREMENT PRIMARY KEY,
+    fk_mensalidade_aluno INT NOT NULL,
+    mes_referencia CHAR(7) NOT NULL,
+    valor DECIMAL(10,2) NOT NULL,
+    data_vencimento DATE NOT NULL,
+    data_pagamento DATE,
+    status ENUM('PENDENTE','PAGO','ATRASADO') DEFAULT 'PENDENTE',
+    CONSTRAINT fk_mensalidade_aluno
+        FOREIGN KEY (fk_mensalidade_aluno)
+        REFERENCES aluno(pk_aluno)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE
+);
 
--- 10. TABELA: depoimentos (Site/Social)
-DROP TABLE IF EXISTS depoimentos;
-CREATE TABLE depoimentos (
-  id_depoimento int(11) NOT NULL AUTO_INCREMENT,
-  fk_aluno int(11) NOT NULL,
-  texto_depoimento text NOT NULL,
-  url_foto varchar(255) DEFAULT NULL,
-  status_exibicao tinyint(1) DEFAULT 0,
-  data_postagem datetime DEFAULT current_timestamp(),
-  PRIMARY KEY (id_depoimento),
-  CONSTRAINT fk_depoimento_aluno FOREIGN KEY (fk_aluno) REFERENCES aluno (pk_aluno) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+-- TABELA DEPOIMENTO
+DROP TABLE IF EXISTS depoimento;
+CREATE TABLE depoimento (
+    id_depoimento INT AUTO_INCREMENT PRIMARY KEY,
+    fk_depoimento_aluno INT NOT NULL,
+    texto_depoimento TEXT NOT NULL,
+    url_foto VARCHAR(255),
+    status_exibicao TINYINT(1) DEFAULT 0,
+    data_postagem DATETIME DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT fk_depoimento_aluno
+        FOREIGN KEY (fk_depoimento_aluno)
+        REFERENCES aluno(pk_aluno)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE
+);
 
--- 11. AUTOMATIZAÇÃO: Trigger para IMC
-DELIMITER //
-CREATE TRIGGER tr_calcula_imc_insert
-BEFORE INSERT ON avaliacao
-FOR EACH ROW
-BEGIN
-    IF NEW.peso > 0 AND NEW.altura > 0 THEN
-        SET NEW.imc = NEW.peso / (NEW.altura * NEW.altura);
-    END IF;
-END;
-//
-DELIMITER ;
+-- TABELA SERVICO
+DROP TABLE IF EXISTS servico;
+CREATE TABLE servico (
+    pk_servico INT AUTO_INCREMENT PRIMARY KEY,
+    titulo VARCHAR(100) NOT NULL,
+    descricao TEXT,
+    publico VARCHAR(100),
+    objetivo TEXT,
+    inclui VARCHAR(100),
+    diferencial VARCHAR(100)
+);
 
-SET FOREIGN_KEY_CHECKS = 1;
