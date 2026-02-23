@@ -20,9 +20,9 @@
      */
 
     --cor-clara: #f8fafc;         /* Texto muito claro */
-    --cor-cinza-claro: #334155;   /* Bordas e divisões */
+    --cor-cinza-claro: #bfc3ca;   /* Bordas e divisões */
     --cor-texto-sec: #94a3b8;     /* Texto secundário */
-    --cor_texto-escuro: #e2e8f0;  /* Texto padrão do site */
+    --cor-texto-escuro: #1f2225;  /* Texto padrão do site */
 
     /* 
        TIPOGRAFIA
@@ -37,6 +37,7 @@
 
     --padding-padrao: 40px;
     --padding-secao: 80px;
+    --gap-padrao: 25px;
 
     /* 
        BORDAS
@@ -225,9 +226,6 @@ body {
     transform: rotate(180deg);
 }
 
-
-
-
 /* Botão escondido no desktop */
 .btn-menu {
     display: none;
@@ -240,11 +238,6 @@ body {
 }
 
 /* MAIN */
-
-.secao {
-    width: 100%;
-}
-
 
 /* page-title */
 .page-title {
@@ -263,8 +256,6 @@ body {
     /* aumenta respiro */
     gap: 20px;
 
-    min-height: 40vh;
-    /* altura padrão menor */
 }
 
 .page-title-full {
@@ -296,6 +287,8 @@ body {
 
     text-align: center;
     /* Centraliza o texto */
+
+    background-color: var(--cor-clara);
 }
 
 /* Título das seções */
@@ -345,14 +338,14 @@ body {
     display: flex;
     /* Layout flexível */
 
-    gap: 20px;
-    /* Espaço entre os cards */
-
     justify-content: center;
     /* Centraliza os cards */
 
     flex-wrap: wrap;
     /* Quebra linha em telas menores */
+
+    justify-content: space-around;
+    gap: var(--gap-padrao);
 }
 
 /* Card individual */
@@ -363,15 +356,16 @@ body {
     padding: 25px;
     /* Espaçamento interno */
 
-    width: 250px;
-    /* Largura fixa */
-
     border-radius: var(--borda-arredondada);
     /* Cantos arredondados */
 
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     /* Sombra suave */
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-servicos{
+    width: 300px;
 }
 
 .card:hover {
@@ -393,31 +387,12 @@ body {
     color: #222;
 }
 
-/* CONTAINER DOS CARDS */
-.container-cards {
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-    flex-wrap: wrap;
-}
-
 /* CARD INDIVIDUAL */
 .card-depoimento {
-    position: relative;
-    background: #ffffff;
-    padding: 40px 30px 30px 30px;
-    width: 320px;
-    border-radius: 20px;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
-    text-align: left;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: 350px;
+    gap: 25px;
 }
 
-/* Efeito hover moderno */
-.card-depoimento:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.12);
-}
 
 /* ASPAS DECORATIVAS GRAES */
 .aspas {
@@ -463,7 +438,7 @@ body {
 .contato-cta .subtitulo {
     margin-top: 10px;
     margin-bottom: 40px;
-    color: var(--cor_texto-escuro);
+    color: var(--cor-texto-escuro);
     opacity: 0.8;
 }
 
@@ -703,13 +678,13 @@ body {
         position: fixed;
         top: auto;
         height: auto;
-        bottom: 20px;
+        bottom: 10px;
         left: 50%;
         transform: translateX(-50%);
         width: 90%;
         max-width: 400px;
-        padding: 12px 20px;
-        border-radius: 50px;
+        padding: 5px 10px;
+        border-radius: 30px;
         justify-content: center;
         flex-direction: row;
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
@@ -724,7 +699,6 @@ body {
     .menu ul {
         display: flex;
         flex-direction: row;
-        width: 100%;
         justify-content: space-around;
         gap: 0;
     }
