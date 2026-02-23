@@ -13,13 +13,13 @@
 </head>
 
 <body>
-    <main class="container">
+    <main>
         <nav id="menu" class="menu">
             <div class="logo">
                 <p>Personal<span>Pro</span></p>
-                    <button id="btnMenu" class="btn-menu">
-                        <i class="bi bi-list"></i>
-                    </button>
+                <button id="btnMenu" class="btn-menu">
+                    <i class="bi bi-list"></i>
+                </button>
             </div>
             <ul>
                 <li><a href="#home"><i class="bi bi-house"></i><span> Home</span></a></li>
@@ -27,8 +27,19 @@
                 <li><a href="#servicos"><i class="bi bi-briefcase"></i><span> Serviços</span></a></li>
                 <li><a href="#depoimentos"><i class="bi bi-chat-quote"></i><span> Depoimentos</span></a></li>
                 <li><a href="#contato"><i class="bi bi-chat"></i><span> Contato</span></a></li>
-                <li><a href="#"><i class="bi bi-person-check"></i><span> Entrar</span></a></li>
-                <li><a href="#"><i class="bi bi-door-open"></i></i><span> Sair</span></a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle">
+                        <i class="bi bi-person-check"></i>
+                        <span>Nome Usuário</span>
+                        <i class="bi bi-chevron-down seta"></i>
+                    </a>
+
+                    <ul class="dropdown-menu">
+                        <li><a href="#dashboard">Dashboard</a></li>
+                        <li><a href="#senha">Alterar Senha</a></li>
+                        <li><a href="#sair">Sair</a></li>
+                    </ul>
+                </li>
             </ul>
         </nav>
         <div class="conteudo">
@@ -183,24 +194,24 @@
     <script>
         // Seleciona o botão do menu
         const btnMenu = document.getElementById('btnMenu');
-    
+
         // Seleciona o cabeçalho pelo ID
         const menuResp = document.getElementById('menu');
-    
+
         // pega o <i> que está dentro do botão
         const icone = btnMenu.querySelector("i");
-    
+
         // Evento de clique
         btnMenu.addEventListener('click', () => {
-    
+
             // Alterna a classe 'expandido'
             menuResp.classList.toggle('expandido');
             // Alterna entre dois ícones
             icone.classList.toggle("bi-list");
             icone.classList.toggle("bi-x");
-    
+
         });
-    
+
     </script>
 </body>
 

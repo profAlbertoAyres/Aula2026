@@ -1,44 +1,50 @@
-/* VARIÁVEIS GLOBAIS
-   Centralizam cores, fontes e tamanhos do projeto */
 :root {
 
-    /* BASE */
-    --cor-escura: #0b1220;
-    --cor-secundaria: #223927;
+    /* 
+       BASE (FUNDOS PRINCIPAIS)
+       Não usamos preto puro para evitar contraste agressivo.
+     */
 
-    /* DESTAQUES */
-    --cor-destaque: #28a745;
-    /* Energia / links */
-    --cor-destaque-sec: #218838;
-    /* Progresso / ação */
+    --cor-escura: #0f172a;        /* Fundo principal */
+    --cor-secundaria: #1e293b;    /* Cards, blocos e superfícies */
 
-    /* NEUTROS */
-    --cor-clara: #f8fafc;
-    --cor-cinza-claro: #f1f5f9;
-    --cor-texto-sec: #cbd5f5;
-    --cor_texto-escuro: #011e1f;
+    /* 
+       DESTAQUES (CORES DE AÇÃO)
+     */
 
-    /* ---------- FONTES ---------- */
+    --cor-destaque: #22c55e;      /* Cor principal de ação */
+    --cor-destaque-sec: #16a34a;  /* Hover da cor principal */
 
-    --fonte-padrao: Arial, sans-serif;
-    /* Fonte principal do site */
+    /* 
+       NEUTROS (TEXTOS E BORDAS)
+     */
 
-    --fonte-menu: 15px;
-    /* Tamanho da fonte dos links do menu */
+    --cor-clara: #f8fafc;         /* Texto muito claro */
+    --cor-cinza-claro: #334155;   /* Bordas e divisões */
+    --cor-texto-sec: #94a3b8;     /* Texto secundário */
+    --cor_texto-escuro: #e2e8f0;  /* Texto padrão do site */
 
-    /* ---------- ESPAÇAMENTOS ---------- */
+    /* 
+       TIPOGRAFIA
+     */
+
+    --fonte-padrao: 'Inter', Arial, sans-serif;
+    --fonte-menu: 16px;
+
+    /* 
+       ESPAÇAMENTOS
+     */
 
     --padding-padrao: 40px;
-    /* Espaçamento lateral padrão */
-
     --padding-secao: 80px;
-    /* Espaçamento vertical das seções */
 
-    /* ---------- BORDAS ---------- */
+    /* 
+       BORDAS
+     */
 
-    --borda-arredondada: 10px;
-    /* Arredondamento padrão de cards */
+    --borda-arredondada: 12px;
 }
+
 
 /* RESET CSS
    Remove padrões dos navegadores */
@@ -93,11 +99,11 @@ body {
     align-items: center;
     /* Centraliza verticalmente */
 
-    padding: 15px var(--padding-padrao);
-    /* Espaçamento interno */
 
     z-index: 1000;
     /* Mantém o header acima dos outros elementos */
+
+    padding: 0 var(--padding-padrao);
 }
 
 /* Logo */
@@ -127,6 +133,10 @@ body {
     /* Espaço entre os links */
 }
 
+.menu ul .dropdown-menu {
+    gap: 0; /* remove no submenu */
+}
+
 /* Links do menu */
 .menu li a {
     color: var(--cor-clara);
@@ -140,6 +150,10 @@ body {
 
     font-size: var(--fonte-menu);
     /* Usa a variável de tamanho do menu */
+
+    padding: 15px 10px;
+    /* Espaçamento interno */
+    display: block;
 }
 
 /* Efeito ao passar o mouse */
@@ -147,6 +161,71 @@ body {
     color: var(--cor-destaque);
     /* Altera a cor no hover */
 }
+
+.menu ul li.dropdown {
+    position: relative;
+}
+
+/* Submenu escondido */
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+
+    background: var(--cor-escura);
+    border-radius: var(--borda-arredondada);
+
+    width: 180px;
+
+    display: flex;
+    flex-direction: column;
+
+    max-height: 0;
+    overflow: hidden;
+
+    transition: max-height 0.4s ease, opacity 0.3s ease;
+    opacity: 0;
+
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+/* Links do submenu */
+.dropdown-menu li a {
+    padding: 12px 15px;
+    font-size: 14px;
+    font-weight: normal;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+/* Remove borda do último */
+.dropdown-menu li:last-child a {
+    border-bottom: none;
+}
+
+/* Hover submenu */
+.dropdown-menu li a:hover {
+    background: var(--cor-destaque);
+    color: white;
+}
+
+/* ABRIR COM HOVER (DESKTOP) */
+.dropdown:hover .dropdown-menu {
+    max-height: 300px;
+    opacity: 1;
+}
+
+/* Animação da seta */
+.seta {
+    margin-left: 6px;
+    font-size: 12px;
+    transition: transform 0.3s ease;
+}
+
+.dropdown:hover .seta {
+    transform: rotate(180deg);
+}
+
+
 
 
 /* Botão escondido no desktop */
@@ -300,8 +379,7 @@ body {
     box-shadow: 0 20px 45px rgba(0, 0, 0, 0.12);
 }
 
-/* SEÇÃO DEPOIMENTOS
-==== */
+/* SEÇÃO DEPOIMENTOS */
 .depoimentos {
     padding: 80px 20px;
     background: #f8f9fa;
@@ -315,8 +393,7 @@ body {
     color: #222;
 }
 
-/* CONTAINER DOS CARDS
-== */
+/* CONTAINER DOS CARDS */
 .container-cards {
     display: flex;
     justify-content: center;
@@ -324,8 +401,7 @@ body {
     flex-wrap: wrap;
 }
 
-/* CARD INDIVIDUAL
-====== */
+/* CARD INDIVIDUAL */
 .card-depoimento {
     position: relative;
     background: #ffffff;
@@ -377,9 +453,6 @@ body {
 
 /* REDES SOCIAIS */
 
-/* ===================================
-   CTA CONTATO / REDES SOCIAIS
-=================================== */
 
 /* Seção com mais presença */
 .contato-cta {
@@ -656,7 +729,7 @@ body {
         gap: 0;
     }
 
-    .menu ul li{
+    .menu ul li {
         width: auto;
     }
 
