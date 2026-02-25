@@ -6,11 +6,9 @@
      */
 
     --bg--cor-escura: #0f172a;        /* Fundo principal */
-    --cor-secundaria: #1e293b;    /* Cards, blocos e superfícies */
+    --bgcor-secundaria: #1e293b;    /* Cards, blocos e superfícies */
 
-    /* 
-       DESTAQUES (CORES DE AÇÃO)
-     */
+    /* DESTAQUES (CORES DE AÇÃO) */
 
     --cor-destaque: #22c55e;      /* Cor principal de ação */
     --cor-destaque-sec: #16a34a;  /* Hover da cor principal */
@@ -242,8 +240,8 @@ body {
 /* page-title */
 .page-title {
     background: linear-gradient(135deg,
-            var(--cor-escura),
-            var(--cor-secundaria));
+            var(--bg-cor-escura),
+            var(--bg-cor-secundaria));
     color: var(--cor-clara);
 
     display: flex;

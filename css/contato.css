@@ -73,7 +73,7 @@
     font-size: 14px;
     font-weight: 600;
 
-    color: var(--cor-secundaria); /* mais contraste */
+    color: var(--bg-cor-secundaria); /* mais contraste */
 }
 
 .campo input,
@@ -81,7 +81,7 @@
 .campo textarea {
     padding: 12px;
     border-radius: 8px;
-    border: 1px solid var(--cor-secundaria);
+    border: 1px solid var(--bg-cor-secundaria);
     background-color: var(--cor-cinza-claro);
     color: #000;
 }
