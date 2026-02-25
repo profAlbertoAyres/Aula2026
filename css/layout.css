@@ -5,7 +5,7 @@
        Não usamos preto puro para evitar contraste agressivo.
      */
 
-    --cor-escura: #0f172a;        /* Fundo principal */
+    --bg--cor-escura: #0f172a;        /* Fundo principal */
     --cor-secundaria: #1e293b;    /* Cards, blocos e superfícies */
 
     /* 
@@ -85,7 +85,7 @@ body {
     width: 100%;
     /* Ocupa toda a largura da tela */
 
-    background-color: var(--cor-escura);
+    background-color: var(--bg-cor-escura);
     /* Define a cor de fundo */
 
     color: var(--cor-clara);
@@ -173,7 +173,7 @@ body {
     top: 100%;
     right: 0;
 
-    background: var(--cor-escura);
+    background: var(--bg-cor-escura);
     border-radius: var(--borda-arredondada);
 
     width: 180px;
@@ -519,7 +519,7 @@ body {
 
 .footer {
     width: 100%;
-    background-color: var(--cor-escura);
+    background-color: var(--bg-cor-escura);
     /* Fundo escuro */
 
     color: var(--cor-clara);
