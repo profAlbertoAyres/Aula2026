@@ -340,12 +340,9 @@ body {
 
 
 /* Seção com mais presença */
-.contato-cta {
-    text-align: center;
-}
 
 /* Subtítulo abaixo do h2 */
-.contato-cta .subtitulo {
+.secao .subtitulo {
     margin-top: 10px;
     margin-bottom: 40px;
     color: var(--cor-texto-escuro);
