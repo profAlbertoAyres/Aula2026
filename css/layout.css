@@ -5,15 +5,15 @@
        Não usamos preto puro para evitar contraste agressivo.
      */
 
-    --bg--cor-escura: #0f172a;        /* Fundo principal */
-    --bgcor-secundaria: #1e293b;    /* Cards, blocos e superfícies */
+    --bg-cor-escura: #0f172a;        /* Fundo principal */
+    --bg-cor-secundaria: #1e293b;    /* Cards, blocos e superfícies */
 
     /* DESTAQUES (CORES DE AÇÃO) */
 
     --cor-destaque: #22c55e;      /* Cor principal de ação */
     --cor-destaque-sec: #16a34a;  /* Hover da cor principal */
 
-    /* 
+    /*  
        NEUTROS (TEXTOS E BORDAS)
      */
 
@@ -97,8 +97,6 @@ body {
 
     align-items: center;
     /* Centraliza verticalmente */
-
-
     z-index: 1000;
     /* Mantém o header acima dos outros elementos */
 
@@ -128,12 +126,6 @@ body {
     display: flex;
     /* Organiza os itens lado a lado */
 
-    gap: 20px;
-    /* Espaço entre os links */
-}
-
-.menu ul .dropdown-menu {
-    gap: 0; /* remove no submenu */
 }
 
 /* Links do menu */
@@ -159,69 +151,6 @@ body {
 .menu li a:hover {
     color: var(--cor-destaque);
     /* Altera a cor no hover */
-}
-
-.menu ul li.dropdown {
-    position: relative;
-}
-
-/* Submenu escondido */
-.dropdown-menu {
-    position: absolute;
-    top: 100%;
-    right: 0;
-
-    background: var(--bg-cor-escura);
-    border-radius: var(--borda-arredondada);
-
-    width: 180px;
-
-    display: flex;
-    flex-direction: column;
-
-    max-height: 0;
-    overflow: hidden;
-
-    transition: max-height 0.4s ease, opacity 0.3s ease;
-    opacity: 0;
-
-    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-}
-
-/* Links do submenu */
-.dropdown-menu li a {
-    padding: 12px 15px;
-    font-size: 14px;
-    font-weight: normal;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
-}
-
-/* Remove borda do último */
-.dropdown-menu li:last-child a {
-    border-bottom: none;
-}
-
-/* Hover submenu */
-.dropdown-menu li a:hover {
-    background: var(--cor-destaque);
-    color: white;
-}
-
-/* ABRIR COM HOVER (DESKTOP) */
-.dropdown:hover .dropdown-menu {
-    max-height: 300px;
-    opacity: 1;
-}
-
-/* Animação da seta */
-.seta {
-    margin-left: 6px;
-    font-size: 12px;
-    transition: transform 0.3s ease;
-}
-
-.dropdown:hover .seta {
-    transform: rotate(180deg);
 }
 
 /* Botão escondido no desktop */
@@ -251,7 +180,6 @@ body {
 
     text-align: center;
     padding: 80px 20px;
-    /* aumenta respiro */
     gap: 20px;
 
 }
@@ -259,9 +187,6 @@ body {
 .page-title-full {
     height: 100vh;
 }
-
-
-
 
 /* Título do page-title */
 .page-title h1 {
@@ -307,7 +232,6 @@ body {
     text-align: center;
     margin-top: 2.5rem;
 }
-
 
 
 /* BOTÕES */
@@ -392,17 +316,6 @@ body {
 }
 
 
-/* ASPAS DECORATIVAS GRAES */
-.aspas {
-    position: absolute;
-    top: -20px;
-    left: 20px;
-    font-size: 6rem;
-    color: rgba(0, 0, 0, 0.05);
-    font-family: serif;
-    line-height: 1;
-}
-
 /* TEXTO DO DEPOIMENTO */
 .texto {
     font-size: 1rem;
@@ -422,7 +335,6 @@ body {
     font-size: 0.9rem;
     color: #888;
 }
-
 
 /* REDES SOCIAIS */
 
