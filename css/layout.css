@@ -1,670 +1,426 @@
+/* ============================================================
+   CONFIGURAÇÕES DE DESIGN (VARIÁVEIS)
+   ============================================================ */
+
 :root {
-
-    /* 
-       BASE (FUNDOS PRINCIPAIS)
-       Não usamos preto puro para evitar contraste agressivo.
-     */
-
-    --bg-cor-escura: #0f172a;        /* Fundo principal */
-    --bg-cor-secundaria: #1e293b;    /* Cards, blocos e superfícies */
+    /* BASE (FUNDOS PRINCIPAIS) */
+    --bg-cor-escura: #0f172a;        /* Cor azul petróleo para o fundo principal */
+    --bg-cor-secundaria: #1e293b;    /* Azul um pouco mais claro para blocos e cards */
 
     /* DESTAQUES (CORES DE AÇÃO) */
+    --cor-destaque: #22c55e;         /* Verde vibrante para botões e links principais */
+    --cor-destaque-sec: #16a34a;     /* Verde escuro para o efeito de passar o mouse */
 
-    --cor-destaque: #22c55e;      /* Cor principal de ação */
-    --cor-destaque-sec: #16a34a;  /* Hover da cor principal */
+    /* NEUTROS (TEXTOS E BORDAS) */
+    --cor-clara: #f8fafc;            /* Branco acinzentado para textos sobre fundo escuro */
+    --cor-cinza-claro: #bfc3ca;      /* Cinza para linhas divisórias e bordas suaves */
+    --cor-texto-sec: #94a3b8;        /* Cinza médio para textos informativos menores */
+    --cor-texto-escuro: #1f2225;     /* Quase preto para textos sobre fundo branco */
 
-    /*  
-       NEUTROS (TEXTOS E BORDAS)
-     */
+    /* TIPOGRAFIA */
+    --fonte-padrao: 'Inter', Arial, sans-serif; /* Define a família da letra do site */
+    --fonte-menu: 16px;                         /* Define o tamanho da letra do menu */
 
-    --cor-clara: #f8fafc;         /* Texto muito claro */
-    --cor-cinza-claro: #bfc3ca;   /* Bordas e divisões */
-    --cor-texto-sec: #94a3b8;     /* Texto secundário */
-    --cor-texto-escuro: #1f2225;  /* Texto padrão do site */
+    /* ESPAÇAMENTOS */
+    --padding-padrao: 40px;          /* Espaço interno das laterais do site */
+    --padding-secao: 80px;           /* Espaço de separação entre um bloco e outro */
+    --gap-padrao: 25px;              /* Distância entre um card e seu vizinho */
 
-    /* 
-       TIPOGRAFIA
-     */
-
-    --fonte-padrao: 'Inter', Arial, sans-serif;
-    --fonte-menu: 16px;
-
-    /* 
-       ESPAÇAMENTOS
-     */
-
-    --padding-padrao: 40px;
-    --padding-secao: 80px;
-    --gap-padrao: 25px;
-
-    /* 
-       BORDAS
-     */
-
-    --borda-arredondada: 12px;
+    /* BORDAS */
+    --borda-arredondada: 12px;       /* Define o quanto os cantos serão arredondados */
 }
 
+/* ============================================================
+   RESET CSS (LIMPEZA DE PADRÕES)
+   ============================================================ */
 
-/* RESET CSS
-   Remove padrões dos navegadores */
 * {
-    margin: 0;
-    /* Remove margens padrão */
-
-    padding: 0;
-    /* Remove espaçamentos internos padrão */
-
-    box-sizing: border-box;
-    /* Inclui padding e borda no cálculo do tamanho */
+    margin: 0;                       /* Remove margens automáticas externas */
+    padding: 0;                      /* Remove espaços automáticos internos */
+    box-sizing: border-box;          /* Garante que bordas não aumentem o tamanho total da caixa */
 }
 
-/* CONFIGURAÇÕES GERAIS */
+/* ============================================================
+   CONFIGURAÇÕES GERAIS
+   ============================================================ */
+
 html {
-    scroll-behavior: smooth;
-    /* Ativa rolagem suave ao clicar em links âncora */
+    scroll-behavior: smooth;         /* Faz a rolagem deslizar suavemente ao clicar em links */
 }
 
 body {
-    font-family: var(--fonte-padrao);
-    /* Aplica a fonte padrão */
-
-    line-height: 1.6;
-    /* Define espaçamento entre linhas */
+    font-family: var(--fonte-padrao); /* Aplica a fonte definida nas variáveis */
+    line-height: 1.6;                 /* Define a distância entre as linhas de texto */
 }
 
-/* HEADER (CABEÇALHO) */
+/* ============================================================
+   HEADER (CABEÇALHO)
+   ============================================================ */
+
 .menu {
-    position: sticky;
-    /* Fixa o header no topo da tela */
-
-    top: 0;
-    /* Alinha no topo */
-
-    width: 100%;
-    /* Ocupa toda a largura da tela */
-
-    background-color: var(--bg-cor-escura);
-    /* Define a cor de fundo */
-
-    color: var(--cor-clara);
-    /* Define a cor do texto */
-
-    display: flex;
-    /* Ativa layout flexível */
-
-    justify-content: space-between;
-    /* Espaça logo e menu */
-
-    align-items: center;
-    /* Centraliza verticalmente */
-    z-index: 1000;
-    /* Mantém o header acima dos outros elementos */
-
-    padding: 0 var(--padding-padrao);
+    position: sticky;                /* Faz o menu "grudar" no topo durante a rolagem */
+    top: 0;                          /* Alinha o menu no topo zero da tela */
+    width: 100%;                     /* Faz o menu ocupar toda a largura da janela */
+    background-color: var(--bg-cor-escura); /* Aplica a cor de fundo azul escura */
+    color: var(--cor-clara);         /* Define a cor do texto como clara */
+    display: flex;                   /* Ativa o modo de caixa flexível para alinhar itens */
+    justify-content: space-between;  /* Empurra a logo para a esquerda e links para a direita */
+    align-items: center;             /* Centraliza logo e links verticalmente (na altura) */
+    z-index: 1000;                   /* Garante que o menu fique por cima de todos os elementos */
+    padding: 0 var(--padding-padrao);/* Aplica o respiro lateral de 40px */
+    transition: width 0.3s ease, background-color 0.3s ease; /* Suaviza mudanças de tamanho/cor */
 }
 
-/* Logo */
 .logo {
-    font-size: 22px;
-    /* Tamanho da fonte da logo */
-
-    font-weight: bold;
-    /* Texto em negrito */
+    font-size: 22px;                 /* Define o tamanho da fonte da marca */
+    font-weight: bold;               /* Deixa o texto da logo em negrito */
 }
 
-/* Parte colorida da logo */
 .logo span {
-    color: var(--cor-destaque);
-    /* Aplica cor de destaque */
+    color: var(--cor-destaque);      /* Pinta o detalhe da logo com o verde de destaque */
 }
 
-/* Menu de navegação */
 .menu ul {
-    list-style: none;
-    /* Remove os marcadores da lista */
-
-    display: flex;
-    /* Organiza os itens lado a lado */
-
+    list-style: none;                /* Remove os pontos pretos (marcadores) da lista */
+    display: flex;                   /* Coloca os links do menu um ao lado do outro */
 }
 
-/* Links do menu */
 .menu li a {
-    color: var(--cor-clara);
-    /* Cor do texto */
-
-    text-decoration: none;
-    /* Remove sublinhado */
-
-    font-weight: bold;
-    /* Texto em negrito */
-
-    font-size: var(--fonte-menu);
-    /* Usa a variável de tamanho do menu */
-
-    padding: 15px 10px;
-    /* Espaçamento interno */
-    display: block;
+    color: var(--cor-clara);         /* Cor do texto do link */
+    text-decoration: none;           /* Remove o sublinhado padrão de links */
+    font-weight: bold;               /* Deixa o texto do link mais grosso */
+    font-size: var(--fonte-menu);    /* Usa os 16px definidos na variável */
+    padding: 15px 10px;              /* Aumenta a área de toque/clique do link */
+    display: block;                  /* Faz o link ocupar o espaço de um bloco inteiro */
 }
 
-/* Efeito ao passar o mouse */
 .menu li a:hover {
-    color: var(--cor-destaque);
-    /* Altera a cor no hover */
+    color: var(--cor-destaque);      /* Muda a cor para verde quando o mouse encosta */
 }
 
-/* Botão escondido no desktop */
 .btn-menu {
-    display: none;
-    background: none;
-    border: none;
-    color: white;
-    font-size: 26px;
-    cursor: pointer;
-    padding: 10px;
+    display: none;                   /* Esconde o botão hamburguer no computador */
+    background: none;                /* Remove qualquer fundo padrão do botão */
+    border: none;                    /* Remove a borda padrão do botão */
+    color: white;                    /* Define a cor do ícone como branca */
+    font-size: 26px;                 /* Define o tamanho visual do ícone */
+    cursor: pointer;                 /* Mostra a mãozinha de clique ao passar o mouse */
+    padding: 10px;                   /* Dá um espaço para facilitar o clique */
 }
 
-/* MAIN */
+/* ============================================================
+   MAIN (CONTEÚDO PRINCIPAL)
+   ============================================================ */
 
-/* page-title */
 .page-title {
-    background: linear-gradient(135deg,
-            var(--bg-cor-escura),
-            var(--bg-cor-secundaria));
-    color: var(--cor-clara);
-
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-    text-align: center;
-    padding: 80px 20px;
-    gap: 20px;
-
+    background: linear-gradient(135deg, var(--bg-cor-escura), var(--bg-cor-secundaria)); /* Fundo degradê */
+    color: var(--cor-clara);         /* Texto claro sobre o fundo escuro */
+    display: flex;                   /* Ativa o modo flexível */
+    flex-direction: column;          /* Empilha Título, Texto e Botão verticalmente */
+    justify-content: center;         /* Centraliza o conteúdo na vertical */
+    align-items: center;             /* Centraliza o conteúdo na horizontal */
+    text-align: center;              /* Garante que as linhas de texto fiquem centralizadas */
+    padding: 80px 20px;              /* Espaço interno para o texto não tocar as bordas */
+    gap: 20px;                       /* Distância de 20px entre cada elemento interno */
 }
 
 .page-title-full {
-    height: 100vh;
+    height: 100vh;                   /* Faz o banner ocupar 100% da altura da tela visível */
 }
 
-/* Título do page-title */
 .page-title h1 {
-    font-size: 52px;
-    max-width: 700px;
-    line-height: 1.2;
+    font-size: 52px;                 /* Tamanho de destaque para o título principal */
+    max-width: 700px;                /* Limita a largura para o texto ser fácil de ler */
+    line-height: 1.2;                /* Ajusta o espaço entre as linhas do título */
 }
 
-/* Texto do page-title */
 .page-title p {
-    font-size: 20px;
-    max-width: 500px;
-    opacity: 0.9;
+    font-size: 20px;                 /* Tamanho da letra do parágrafo de apoio */
+    max-width: 500px;                /* Limita a largura do parágrafo */
+    opacity: 0.9;                    /* Deixa o texto levemente transparente (suave) */
 }
 
+/* ============================================================
+   SEÇÕES E BOTÕES
+   ============================================================ */
 
-/* SEÇÕES */
 .secao {
-    padding: var(--padding-secao) var(--padding-padrao);
-    /* Espaçamento interno da seção */
-
-    text-align: center;
-    /* Centraliza o texto */
-
-    background-color: var(--cor-clara);
+    padding: var(--padding-secao) var(--padding-padrao); /* Aplica 80px em cima/baixo e 40px nas laterais */
+    text-align: center;              /* Centraliza todos os textos da seção */
+    background-color: var(--cor-clara); /* Define fundo claro para esta área */
 }
 
-/* Título das seções */
 .secao h2 {
-    margin-bottom: 20px;
-    /* Espaço abaixo do título */
+    margin-bottom: 20px;             /* Empurra o conteúdo de baixo para longe do título */
 }
 
-/* Seção destacada */
 .destaque {
-    background: var(--cor-cinza-claro);
-    /* Fundo claro */
+    background-color: var(--cor-cinza-claro); /* Fundo diferenciado para destacar o bloco */
 }
-
-/* CONTAINER DOS BOTÕES */
 
 .container-btn {
-    text-align: center;
-    margin-top: 2.5rem;
+    text-align: center;              /* Centraliza o botão dentro do seu container */
+    margin-top: 2.5rem;              /* Dá um espaço superior generoso antes do botão */
 }
 
-
-/* BOTÕES */
-
 .btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    background: var(--cor-destaque);
-    color: #fff;
-    padding: 0.9rem 1.8rem;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: 600;
-    transition: 0.3s;
+    display: inline-flex;            /* Permite ícone e texto na mesma linha */
+    align-items: center;             /* Alinha ícone e texto no centro da altura do botão */
+    gap: 0.5rem;                     /* Espaço entre o ícone e a palavra */
+    background-color: var(--cor-destaque); /* Aplica a cor verde de fundo */
+    color: #fff;                     /* Texto do botão sempre branco */
+    padding: 0.9rem 1.8rem;          /* Define a altura e largura interna do botão */
+    border-radius: 8px;              /* Arredonda levemente os cantos do botão */
+    text-decoration: none;           /* Tira o sublinhado do link do botão */
+    font-weight: 600;                /* Deixa a letra do botão levemente em negrito */
+    transition: 0.3s;                /* Faz qualquer mudança (cor/posição) durar 0.3 segundos */
 }
 
 .btn:hover {
-    background: var(--cor-destaque-sec);
-    transform: translateY(-2px);
+    background-color: var(--cor-destaque-sec); /* Escurece o verde ao passar o mouse */
+    transform: translateY(-2px);     /* Faz o botão subir 2 pixels (efeito visual de clique) */
 }
 
+/* ============================================================
+   CARDS (SISTEMA DE GRADES)
+   ============================================================ */
 
-/* CARDS */
 .cards {
-    display: flex;
-    /* Layout flexível */
-
-    justify-content: center;
-    /* Centraliza os cards */
-
-    flex-wrap: wrap;
-    /* Quebra linha em telas menores */
-
-    justify-content: space-around;
-    gap: var(--gap-padrao);
+    display: flex;                   /* Organiza os cards em linha */
+    flex-wrap: wrap;                 /* Permite que cards pulem de linha se a tela for pequena */
+    justify-content: space-around;   /* Distribui os cards com espaços iguais entre eles */
+    gap: var(--gap-padrao);          /* Espaço de 25px entre cada card */
 }
 
-/* Card individual */
 .card {
-    background: var(--cor-clara);
-    /* Fundo branco */
-
-    padding: 25px;
-    /* Espaçamento interno */
-
-    border-radius: var(--borda-arredondada);
-    /* Cantos arredondados */
-
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    /* Sombra suave */
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background-color: var(--cor-clara); /* Fundo claro para o card */
+    padding: 25px;                   /* Espaço interno para o conteúdo não apertar */
+    border-radius: var(--borda-arredondada); /* Aplica os 12px de arredondamento */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* Cria uma sombra suave de profundidade */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Suaviza a animação de subir */
 }
 
-.card-servicos{
-    width: 300px;
+.card-servicos {
+    width: 300px;                    /* Define uma largura fixa de 300px para cards de serviço */
 }
 
 .card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.12);
+    transform: translateY(-8px);     /* Faz o card subir 8px no hover */
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.12); /* Aumenta a sombra ao subir */
 }
 
-/* SEÇÃO DEPOIMENTOS */
-.depoimentos {
-    padding: 80px 20px;
-    background: #f8f9fa;
-    text-align: center;
-}
+/* ============================================================
+   DEPOIMENTOS
+   ============================================================ */
 
 .titulo-secao {
-    font-size: 2rem;
-    margin-bottom: 50px;
-    font-weight: 700;
-    color: #222;
+    font-size: 2rem;                 /* Tamanho grande para o título da área */
+    margin-bottom: 50px;             /* Espaço largo abaixo do título */
+    font-weight: 700;                /* Texto bem grosso */
+    color: #222;                     /* Cor escura sólida */
 }
 
-/* CARD INDIVIDUAL */
 .card-depoimento {
-    width: 350px;
-    gap: 25px;
+    width: 350px;                    /* Define largura um pouco maior para depoimentos */
 }
 
-
-/* TEXTO DO DEPOIMENTO */
 .texto {
-    font-size: 1rem;
-    color: #555;
-    margin-bottom: 25px;
-    line-height: 1.6;
+    font-size: 1rem;                 /* Tamanho padrão da letra */
+    color: #555;                     /* Cinza escuro para o texto da citação */
+    margin-bottom: 25px;             /* Espaço antes do nome do cliente */
+    line-height: 1.6;                /* Espaçamento entre linhas da citação */
 }
 
-/* INFORMAÇÕES DO CLIENTE */
 .cliente strong {
-    display: block;
-    font-size: 1rem;
-    color: #222;
+    display: block;                  /* Garante que o nome ocupe uma linha inteira */
+    font-size: 1rem;                 /* Tamanho da letra do nome */
+    color: var(--cor-texto-escuro);  /* Cor escura definida nas variáveis */
 }
 
-.cliente span {
-    font-size: 0.9rem;
-    color: #888;
-}
+/* ============================================================
+   REDES SOCIAIS
+   ============================================================ */
 
-/* REDES SOCIAIS */
-
-
-/* Seção com mais presença */
-
-/* Subtítulo abaixo do h2 */
 .secao .subtitulo {
-    margin-top: 10px;
-    margin-bottom: 40px;
-    color: var(--cor-texto-escuro);
-    opacity: 0.8;
+    margin-top: 10px;                /* Pequeno espaço acima do subtítulo */
+    margin-bottom: 40px;             /* Espaço antes dos botões de redes sociais */
+    color: var(--cor-texto-escuro);  /* Cor padrão escura */
+    opacity: 0.8;                    /* Suaviza o texto do subtítulo */
 }
 
-/* Container das redes */
 .redes {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    flex-wrap: wrap;
-    margin-bottom: 40px;
+    display: flex;                   /* Coloca ícones em linha */
+    justify-content: center;         /* Centraliza os ícones na horizontal */
+    gap: 20px;                       /* Espaço entre cada botão social */
+    flex-wrap: wrap;                 /* Pula linha se necessário */
+    margin-bottom: 40px;             /* Espaço final da seção */
 }
 
-/* Botões de rede (agora mais fortes) */
 .rede {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-
-    padding: 14px 22px;
-    border-radius: var(--borda-arredondada);
-
-    background: var(--cor-escura);
-    color: var(--cor-clara);
-
-    font-weight: 600;
-    text-decoration: none;
-
-    transition: all 0.3s ease;
+    display: inline-flex;            /* Permite alinhar ícone e texto dentro do botão */
+    align-items: center;             /* Alinha ícone e texto no meio verticalmente */
+    gap: 10px;                       /* Espaço entre o ícone da rede e o nome */
+    padding: 14px 22px;              /* Tamanho generoso para o clique */
+    border-radius: var(--borda-arredondada); /* Cantos arredondados */
+    background-color: var(--bg-cor-escura); /* Fundo escuro padrão */
+    color: var(--cor-clara);         /* Ícone e texto em branco */
+    font-weight: 600;                /* Negrito médio */
+    text-decoration: none;           /* Sem sublinhado */
+    transition: all 0.3s ease;       /* Suaviza qualquer mudança visual */
 }
 
-/* Ícones */
 .rede i {
-    font-size: 18px;
+    font-size: 18px;                 /* Define o tamanho do ícone da rede social */
 }
 
-/* Hover padrão */
 .rede:hover {
-    transform: translateY(-3px);
-    background: var(--cor-destaque);
+    transform: translateY(-3px);     /* Pequeno pulo para cima ao interagir */
 }
 
-.rede.instagram {
-    background: #E1306C;
-}
+.rede.instagram { background-color: #E1306C; } /* Cor oficial do Instagram */
+.rede.instagram:hover { background-color: #c72c60; } /* Cor do Instagram no hover */
 
-.rede.whatsapp {
-    background: #25D366;
-}
+.rede.whatsapp { background-color: #25D366; } /* Cor oficial do Whatsapp */
+.rede.whatsapp:hover { background-color: #1ebe5d; } /* Cor do Whatsapp no hover */
 
-.rede.facebook {
-    background: #1877F2;
-}
+.rede.facebook { background-color: #1877F2; } /* Cor oficial do Facebook */
+.rede.facebook:hover { background-color: #1666d1; } /* Cor do Facebook no hover */
 
-.rede.instagram:hover {
-    background: #c72c60;
-    transform: translateY(-3px);
-}
-
-.rede.whatsapp:hover {
-    background: #1ebe5d;
-    transform: translateY(-3px);
-}
-
-.rede.facebook:hover {
-    background: #1666d1;
-    transform: translateY(-3px);
-}
-
-
-
-/* menu responsivo  */
-.menu-resp {
-    display: none;
-}
-
-
-/* FOOTER */
+/* ============================================================
+   FOOTER (RODAPÉ)
+   ============================================================ */
 
 .footer {
-    width: 100%;
-    background-color: var(--bg-cor-escura);
-    /* Fundo escuro */
-
-    color: var(--cor-clara);
-    /* Texto claro */
-
-    text-align: center;
-    /* Centraliza o conteúdo */
-
-    margin: 0;
-
-    padding: 30px 20px;
-    /* Espaçamento interno */
-
-    display: flex;
-    /* Ativa flexbox */
-
-    flex-direction: column;
-    /* Organiza em coluna */
-
-    gap: 10px;
-    /* Espaço entre os textos */
+    width: 100%;                     /* Ocupa a largura total */
+    background-color: var(--bg-cor-escura); /* Fundo azul petróleo escuro */
+    color: var(--cor-clara);         /* Texto claro */
+    text-align: center;              /* Centraliza todos os textos */
+    margin: 0;                       /* Remove margens extras */
+    padding: 30px 20px;              /* Espaço interno para o conteúdo */
+    display: flex;                   /* Ativa flexbox */
+    flex-direction: column;          /* Empilha os textos um sobre o outro */
+    gap: 10px;                       /* Espaço entre as linhas do rodapé */
 }
 
-/* Nome do projeto */
 .footer-logo {
-    font-size: 18px;
-    /* Tamanho do texto */
-
-    font-weight: bold;
-    /* Negrito */
+    font-size: 18px;                 /* Tamanho da logo no rodapé */
+    font-weight: bold;               /* Negrito para a marca */
 }
 
-/* Destaque no nome */
 .footer-logo span {
-    color: var(--cor-destaque);
-    /* Cor vibrante */
+    color: var(--cor-destaque);      /* Verde para o detalhe da logo */
 }
 
-/* Texto legal / informativo */
 .footer-texto {
-    font-size: 14px;
-    /* Fonte menor */
-
-    opacity: 0.8;
-    /* Suaviza o texto */
+    font-size: 14px;                 /* Letra menor para informações legais */
+    opacity: 0.8;                    /* Suaviza o texto informativo */
 }
 
+/* ============================================================
+   RESPONSIVIDADE (ADAPTAÇÃO DE TELAS)
+   ============================================================ */
 
-/* Desktop grande */
+/* DESKTOP GRANDE */
 @media (min-width: 1200px) {
     .secao {
-        max-width: 1200px;
-        margin: 0 auto;
+        max-width: 1200px;           /* Impede que o conteúdo se espalhe demais em telas gigantes */
+        margin: 0 auto;              /* Centraliza o bloco na tela */
     }
 }
 
-/* RESPONSIVIDADE - TABLET */
+/* TABLET (ATÉ 1024PX) */
 @media (max-width: 1024px) {
-    main {
-        display: flex;
-    }
-
-    .conteudo {
-        flex: 1;
-        width: auto;
-    }
-
-    /* Menu lateral fixo à direita */
+    main { display: flex; }          /* Permite que o menu e o conteúdo fiquem lado a lado */
+    .conteudo { flex: 1; width: auto; } /* Faz o conteúdo ocupar o resto da tela */
+    
     .menu {
-        width: 80px;
-        height: 100vh;
-        order: 2;
-        flex-direction: column;
-        justify-content: flex-start;
-        align-items: center;
-        padding: 20px 0;
+        width: 80px;                 /* Menu vira uma barra lateral estreita */
+        height: 100vh;               /* Ocupa 100% da altura da janela */
+        order: 2;                    /* Joga o menu para o lado direito da tela */
+        flex-direction: column;      /* Itens ficam um abaixo do outro verticalmente */
+        justify-content: flex-start; /* Alinha os itens no topo da barra lateral */
+        align-items: center;         /* Centraliza os ícones horizontalmente na barra */
+        padding: 20px 0;             /* Espaço interno superior e inferior */
     }
 
-    .menu p {
-        display: none;
-    }
+    .menu p { display: none; }       /* Esconde parágrafos extras no tablet */
+    .menu ul { flex-direction: column; align-items: center; } /* Lista fica vertical */
+    .menu .btn-menu { display: block; } /* Mostra o botão de abrir menu */
+    .menu ul li a { font-size: 22px; } /* Aumenta os ícones para facilitar o toque */
+    .menu a span { display: none; }  /* Esconde o texto dos links, deixando só ícones */
 
-    .menu ul {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .menu ul li {
-        width: 100%;
-    }
-
-
-    /* Botão hamburguer visível no tablet */
-    .menu .btn-menu {
-        display: block;
-    }
-
-    /* Links do menu */
-    .menu ul li a {
-
-        font-size: 22px;
-        /* Ícones maiores */
-        justify-content: flex-start;
-    }
-
-    /* Texto do menu escondido por padrão */
-    .menu a span {
-        display: none;
-    }
-
-    /* Estado expandido do menu */
+    /* ESTADO EXPANDIDO DO MENU TABLET */
     .menu.expandido {
-        width: 200px;
-        /* Menu aberto */
-        align-items: flex-start;
-        padding: 20px;
+        width: 200px;                /* Aumenta a largura da barra lateral */
+        align-items: flex-start;     /* Alinha os itens à esquerda */
+        padding: 20px;               /* Dá respiro interno */
+        white-space: nowrap;         /* Impede que o texto pule de linha */
     }
 
-    /* Texto aparece quando menu está expandido */
+    .menu.expandido ul { align-items: flex-start; } /* Alinha a lista à esquerda */
     .menu.expandido a span {
-        display: inline;
-        margin-left: 10px;
-        font-size: 14px;
+        display: inline;             /* Faz o texto aparecer ao lado do ícone */
+        margin-left: 10px;           /* Espaço entre ícone e texto */
+        font-size: 14px;             /* Tamanho da letra do menu aberto */
     }
 
-    .page-title h1 {
-        font-size: 34px;
-    }
-
-    .page-title p {
-        font-size: 16px;
-    }
-
-    .btn {
-        width: 100%;
-        max-width: 280px;
-        text-align: center;
-    }
-
-    .card-depoimento {
-        width: 90%;
-    }
-
+    .page-title h1 { font-size: 34px; } /* Diminui o título para telas menores */
+    .page-title p { font-size: 16px; }  /* Diminui o parágrafo de apoio */
+    .btn { width: 100%; max-width: 280px; text-align: center; } /* Botão largo no tablet */
+    .card-depoimento { width: 90%; }  /* Depoimento ocupa quase toda a largura */
 }
 
-/* MOBILE UX (até 768px) */
+/* MOBILE UX (ATÉ 768PX) */
 @media (max-width: 768px) {
+    body { padding-bottom: 100px; }  /* Dá espaço no fim para o menu não tampar o texto */
 
-    /* Evita que o menu cubra conteúdo */
-    body {
-        padding-bottom: 100px;
-    }
-
-    /* MENU MOBILE (BOTTOM) */
     .menu {
-        position: fixed;
-        top: auto;
-        height: auto;
-        bottom: 10px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 90%;
-        max-width: 400px;
-        padding: 5px 10px;
-        border-radius: 30px;
-        justify-content: center;
-        flex-direction: row;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        position: fixed;             /* Menu fica flutuando fixo na tela */
+        top: auto;                   /* Desativa o alinhamento no topo */
+        height: auto;                /* Altura automática conforme os ícones */
+        bottom: 20px;                /* Flutua 20px acima da base da tela */
+        left: 50%;                   /* Posiciona no meio da largura */
+        transform: translateX(-50%);  /* Centraliza o menu perfeitamente */
+        width: 90%;                  /* Ocupa 90% da largura do celular */
+        max-width: 400px;            /* Não deixa o menu mobile ficar gigante */
+        
+        /* GLASSMORPHISM (EFEITO DE VIDRO) */
+        background-color: rgba(15, 23, 42, 0.7); /* Cor escura com 70% de opacidade */
+        backdrop-filter: blur(12px);             /* Cria o efeito de desfoque no fundo */
+        -webkit-backdrop-filter: blur(12px);      /* Suporte para navegadores Apple */
+        border: 1px solid rgba(255, 255, 255, 0.1); /* Borda fina para simular reflexo */
+        border-radius: 30px;         /* Menu em formato de pílula arredondada */
+        padding: 5px 10px;           /* Espaço interno reduzido */
+        justify-content: center;     /* Centraliza itens no menu mobile */
+        flex-direction: row;         /* Volta para linha horizontal no celular */
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4); /* Sombra forte para destacar do site */
+        z-index: 2000;               /* Fica acima de absolutamente tudo */
     }
 
-    /* Esconde botão hamburguer no mobile */
-    .menu .logo {
-        display: none;
-    }
+    .menu ul li a { color: #ffffff; text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); } /* Melhora leitura no vidro */
+    .menu .logo { display: none; }   /* Esconde a logo no menu mobile para poupar espaço */
+    .menu ul { flex-direction: row; justify-content: space-around; width: 100%; } /* Distribui ícones */
+    .menu ul li a i { padding: 10px; font-size: 24px; position: relative; } /* Ícones grandes para o dedo */
 
-    /* Lista horizontal */
-    .menu ul {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-around;
-        gap: 0;
-    }
-
-    .menu ul li {
-        width: auto;
-    }
-
-    .menu ul li a i {
-        padding: 10px;
-        /* Aumenta a área de clique */
-        font-size: 24px;
-        /* Tamanho para o ícone aparecer bem */
-        position: relative;
-    }
-
-    /* INDICADOR ATIVO (BOL */
+    /* INDICADOR ATIVO NO MOBILE (BOLINHA) */
     .menu a::after {
-        content: '';
-        position: absolute;
-        bottom: -6px;
-
-        width: 6px;
-        height: 6px;
-
-        background: var(--cor-destaque);
-        border-radius: 50%;
-
-        opacity: 0;
-        transform: scale(0);
-        transition: opacity 0.3s ease, transform 0.3s ease;
+        content: '';                 /* Cria um elemento vazio */
+        position: absolute;          /* Posiciona em relação ao link */
+        bottom: -6px;                /* Fica 6px abaixo do ícone */
+        width: 6px;                  /* Largura da bolinha */
+        height: 6px;                 /* Altura da bolinha */
+        background-color: var(--cor-destaque); /* Cor verde */
+        border-radius: 50%;          /* Transforma o quadrado em círculo */
+        opacity: 0;                  /* Começa invisível */
+        transform: scale(0);         /* Começa encolhida */
+        transition: opacity 0.3s ease, transform 0.3s ease; /* Animação de aparecer */
     }
 
-    .menu a.ativo {
-        color: var(--cor-destaque);
-    }
+    .menu a.ativo { color: var(--cor-destaque); } /* Muda cor do ícone selecionado */
+    .menu a.ativo::after { opacity: 1; transform: scale(1); } /* Mostra a bolinha no ícone selecionado */
+    .menu a:active { transform: scale(0.9); } /* Efeito de "apertar" ao tocar com o dedo */
 
-    .menu a.ativo::after {
-        opacity: 1;
-        transform: scale(1);
-    }
-
-    /* Feedback de toque */
-    .menu a:active {
-        transform: scale(0.9);
-    }
-
-    /* SEÇÕES E CARDS */
-    .secao {
-
-        padding: 60px 20px;
-    }
-
-    .cards {
-        gap: 15px;
-    }
-
-    .card {
-        width: 100%;
-        max-width: 320px;
-    }
+    .secao { padding: 60px 20px; }   /* Reduz o respiro interno no celular */
+    .cards { gap: 15px; }            /* Aproxima os cards no celular */
+    .card { width: 100%; max-width: 320px; } /* Card ocupa a largura do celular */
 }
