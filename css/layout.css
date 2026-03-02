@@ -335,7 +335,6 @@ body {
     
     .menu {
         width: 80px;                 /* Menu vira uma barra lateral estreita */
-        height: 100vh;               /* Ocupa 100% da altura da janela */
         order: 2;                    /* Joga o menu para o lado direito da tela */
         flex-direction: column;      /* Itens ficam um abaixo do outro verticalmente */
         justify-content: flex-start; /* Alinha os itens no topo da barra lateral */
@@ -343,8 +342,17 @@ body {
         padding: 20px 0;             /* Espaço interno superior e inferior */
     }
 
+    .menu .logo{
+        position: sticky;
+        top: 20px;
+    }
+
     .menu p { display: none; }       /* Esconde parágrafos extras no tablet */
-    .menu ul { flex-direction: column; align-items: center; } /* Lista fica vertical */
+    .menu ul { flex-direction: column; 
+        align-items: center; 
+        position: sticky;
+        top: 70px;
+    } /* Lista fica vertical */
     .menu .btn-menu { display: block; } /* Mostra o botão de abrir menu */
     .menu ul li a { font-size: 22px; } /* Aumenta os ícones para facilitar o toque */
     .menu a span { display: none; }  /* Esconde o texto dos links, deixando só ícones */
