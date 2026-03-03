@@ -365,6 +365,10 @@ body {
         white-space: nowrap;         /* Impede que o texto pule de linha */
     }
 
+    .menu.menu.expandido li{
+        width: 100%;
+    }
+
     .menu.expandido ul { align-items: flex-start; } /* Alinha a lista à esquerda */
     .menu.expandido a span {
         display: inline;             /* Faz o texto aparecer ao lado do ícone */
