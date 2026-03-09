@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>INNER JOIN Interativo</title>
+
+<style>
+body{
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg,#1e3c72,#2a5298);
+    color:white;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    height:100vh;
+}
+
+h1{
+    margin-bottom:10px;
+}
+
+#info{
+    margin-bottom:30px;
+    font-size:18px;
+    min-height:24px;
+}
+
+.container{
+    display:flex;
+    gap:120px;
+    margin-bottom:40px;
+    position:relative;
+}
+
+.group{
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+}
+
+.box{
+    background:white;
+    color:#333;
+    padding:15px 30px;
+    border-radius:10px;
+    font-weight:bold;
+    text-align:center;
+    transition:0.5s;
+}
+
+.connection{
+    position:absolute;
+    width:200px;
+    height:2px;
+    background:lime;
+    opacity:0;
+    transition:0.5s;
+}
+
+.line1{ top:60px; left:200px; }
+.line2{ top:140px; left:200px; }
+
+.fade{
+    opacity:0.2;
+}
+
+.highlight{
+    background:#00ff88 !important;
+    transform:scale(1.1);
+}
+
+button{
+    padding:12px 25px;
+    border:none;
+    border-radius:8px;
+    background:#00ff88;
+    font-weight:bold;
+    cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<h1>INNER JOIN - Passo a Passo</h1>
+<div id="info"></div>
+
+<div class="container">
+
+<div class="group">
+    <div class="box" id="joao">João</div>
+    <div class="box" id="maria">Maria (sem horário)</div>
+    <div class="box" id="pedro">Pedro</div>
+</div>
+
+<div class="connection line1" id="c1"></div>
+<div class="connection line2" id="c2"></div>
+
+<div class="group">
+    <div class="box" id="h1">08:00</div>
+    <div class="box" id="h2">09:00 (livre)</div>
+    <div class="box" id="h3">10:00</div>
+</div>
+
+</div>
+
+<button onclick="nextStep()">Próximo Passo</button>
+
+<script>
+let step = 0;
+const info = document.getElementById("info");
+
+function nextStep(){
+
+    step++;
+
+    if(step === 1){
+        info.innerText = "Temos dois grupos: Alunos e Horários.";
+    }
+
+    if(step === 2){
+        document.getElementById("c1").style.opacity = 1;
+        document.getElementById("c2").style.opacity = 1;
+        info.innerText = "João marcou 08:00 e Pedro marcou 10:00.";
+    }
+
+    if(step === 3){
+        info.innerText = "Maria não marcou horário e 09:00 continua livre.";
+        document.getElementById("maria").classList.add("fade");
+        document.getElementById("h2").classList.add("fade");
+    }
+
+    if(step === 4){
+        info.innerText = "Aplicando INNER JOIN: apenas correspondências permanecem.";
+        document.getElementById("joao").classList.add("highlight");
+        document.getElementById("pedro").classList.add("highlight");
+        document.getElementById("h1").classList.add("highlight");
+        document.getElementById("h3").classList.add("highlight");
+    }
+
+    if(step > 4){
+        location.reload();
+    }
+}
+</script>
+
+</body>
+</html>
