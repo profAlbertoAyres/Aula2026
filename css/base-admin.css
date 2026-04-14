@@ -1,0 +1,433 @@
+/* 
+ * ============================================
+ * 1. IMPORTAÇÃO DE FONTES DO GOOGLE
+ * ============================================
+ */
+
+/*
+ * Importa duas famílias de fontes do Google Fonts:
+ * - Inter: pesos 400 (normal), 500 (medium), 600 (semi-bold)
+ * - Montserrat: pesos 600 (semi-bold) e 700 (bold)
+ * Usadas para tipografia moderna e legível
+ */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@600;700&display=swap');
+
+
+/* 
+ * ============================================
+ * 2. VARIÁVEIS CSS (CUSTOM PROPERTIES)
+ * ============================================
+ * :root é o elemento raiz do documento (equivalente ao <html>)
+ * Variáveis definidas aqui podem ser usadas em qualquer lugar do CSS
+ * Facilitam manutenção e temas consistentes
+ */
+
+:root {
+    /* --- CORES PRIMÁRIAS (BRAND) --- */
+    --pp-primary: #6366f1;              /* Roxo/índigo principal - cor da marca */
+    --pp-primary-soft: rgba(99, 102, 241, 0.1); /* Versão transparente (10% opacidade) para fundos suaves */
+
+    /* --- CORES DE AÇÕES (BOTÕES) --- */
+    --pp-action-save: #10b981;          /* Verde para ação de salvar */
+    --pp-action-save-hover: #059669;    /* Verde mais escuro para hover do botão salvar */
+    
+    --pp-action-edit: #f59e0b;          /* Âmbar/laranja para ação de editar */
+    --pp-action-edit-hover: #d97706;    /* Laranja mais escuro para hover do botão editar */
+    
+    --pp-action-delete: #ef4444;        /* Vermelho para ação de deletar/excluir */
+    --pp-action-delete-hover: #dc2626;  /* Vermelho mais escuro para hover do botão deletar */
+    
+    --pp-action-search: #3b82f6;        /* Azul para ação de busca/pesquisar */
+    --pp-action-search-hover: #2563eb;  /* Azul mais escuro para hover do botão buscar */
+    
+    --pp-action-back: #64748b;          /* Cinza azulado para ação de voltar */
+    --pp-action-back-hover: #475569;    /* Cinza mais escuro para hover do botão voltar */
+
+    /* --- CORES DE FUNDO E ELEMENTOS --- */
+    --pp-bg: #f8fafc;                   /* Cor de fundo principal da página (cinza muito claro) */
+    --pp-header-bg: #ffffff;            /* Fundo branco para o cabeçalho */
+    --pp-card-bg: #ffffff;              /* Fundo branco para os cards */
+    --pp-sidebar-bg: #1e293b;           /* Fundo escuro (azul marinho) para a sidebar */
+    --pp-border: #e2e8f0;               /* Cor das bordas (cinza claro) */
+    --pp-white: #ffffff;                /* Branco puro */
+
+    /* --- CORES DE TEXTO E TIPOGRAFIA --- */
+    --pp-text-main: #1e293b;            /* Cor principal do texto (cinza escuro) */
+    --pp-text-muted: #64748b;           /* Cor de texto secundário/menos importante (cinza médio) */
+    --pp-font-main: 'Inter', sans-serif;    /* Fonte principal para textos gerais */
+    --pp-font-secondary: 'Montserrat', sans-serif; /* Fonte secundária para títulos/destaques */
+}
+
+
+/* 
+ * ============================================
+ * 3. RESET GLOBAL
+ * ============================================
+ * Remove margens e paddings padrão de TODOS os elementos
+ * E define box-sizing: border-box para que paddings e borders
+ * sejam incluídos na largura/altura total do elemento
+ */
+* { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box;
+}
+
+/* 
+ * ============================================
+ * 4. ESTILOS DO CORPO DA PÁGINA (BODY)
+ * ============================================
+ */
+
+body {
+    font-family: var(--pp-font-main);        /* Usa a fonte Inter definida nas variáveis */
+    background-color: var(--pp-bg);          /* Usa a cor de fundo definida nas variáveis */
+    color: var(--pp-text-main);              /* Usa a cor principal de texto */
+    padding-bottom: 70px;                    /* Espaço inferior para não ficar atrás da sidebar mobile */
+    transition: background-color 0.3s, color 0.3s; /* Transição suave para possível tema escuro/claro */
+    -webkit-font-smoothing: antialiased;     /* Suaviza fontes no WebKit (Chrome, Safari) */
+}
+
+/* Quando estiver checado, trocamos os valores das variáveis */
+#theme-switch:checked ~ .app {
+    --pp-bg: #0f172a;           /* Fundo Navy profundo */
+    --pp-header-bg: #1e293b;    /* Slate escuro para o topo */
+    --pp-card-bg: #1e293b;      /* Cards acompanham o header */
+    --pp-sidebar-bg: #020617;   /* Sidebar quase preta para contraste */
+    --pp-border: #334155;       /* Bordas em tom Slate azulado */
+    
+    --pp-text-main: #f1f5f9;    /* Branco acinzentado (não cansa a vista) */
+    --pp-text-muted: #94a3b8;   /* Texto secundário */
+}
+
+/* Trocando o ícone visualmente quando checado */
+#theme-switch:checked ~ .app .theme-icon-dark { display: none; }
+#theme-switch:checked ~ .app .theme-icon-light { 
+    display: inline-block !important; 
+    color: #facc15; /* Cor amarela para o sol */
+}
+
+/* Garante que os cards e o body mudem de cor suavemente */
+.app, .pp-card, .pp-header, .pp-sidebar {
+    transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease;
+}
+/* fim */
+
+/* 
+ * ============================================
+ * 5. WRAPPER PRINCIPAL (GRID LAYOUT)
+ * ============================================
+ * Define o container principal como um grid
+ */
+
+.pp-wrapper {
+    display: grid;                          /* Ativa CSS Grid Layout */
+    grid-template-columns: 1fr;             /* Apenas 1 coluna (layout mobile inicial) */
+    grid-template-areas:                    /* Nomeia as áreas do grid */
+        "header"                            /* Primeira linha: cabeçalho */
+        "content";                          /* Segunda linha: conteúdo principal */
+    min-height: 100vh;                      /* Altura mínima de 100% da viewport */
+}
+
+/* 
+ * ============================================
+ * 6. CABEÇALHO (HEADER)
+ * ============================================
+ */
+
+.pp-header {
+    grid-area: header;                      /* Posiciona na área 'header' do grid */
+    background-color: var(--pp-header-bg);  /* Fundo branco */
+    padding: 1rem 1.5rem;                   /* Espaçamento interno (vertical/horizontal) */
+    display: flex;                          /* Layout flexível */
+    justify-content: space-between;         /* Espaça os itens (título à esquerda, ações à direita) */
+    align-items: center;                    /* Centraliza verticalmente */
+    border-bottom: 1px solid var(--pp-border); /* Borda inferior sutil */
+    position: sticky;                       /* Fixa no topo ao rolar a página */
+    top: 0;                                 /* Gruda no topo */
+    z-index: 100;                           /* Fica acima de outros elementos */
+}
+
+.pp-header h1 { 
+    font-family: var(--pp-font-secondary);  /* Título usa fonte Montserrat (mais destacada) */
+    font-size: 1.1rem;                      /* Tamanho médio (mobile) */
+}
+
+.pp-header-actions {
+    display: flex;                          /* Layout flexível para os ícones/botões */
+    align-items: center;                    /* Centraliza verticalmente */
+    gap: 15px;                              /* Espaço de 15px entre os itens */
+    color: var(--pp-text-muted);            /* Cor secundária para os ícones */
+}
+
+
+
+.pp-icon-btn { 
+    cursor: pointer;                        /* Cursor de mão indicando clicável */
+    transition: 0.2s;                       /* Transição suave para mudanças de cor/estado */
+}
+
+.pp-icon-btn:hover { 
+    color: var(--pp-primary);               /* Ao passar mouse, fica com a cor primária (roxo) */
+}
+
+/* 
+ * ============================================
+ * 7. SIDEBAR (VERSÃO MOBILE - BARRA INFERIOR)
+ * ============================================
+ */
+
+.pp-sidebar {
+    grid-area: sidebar;                     /* Área definida no grid (para desktop) */
+    position: fixed;                        /* Fixa na tela (mobile) */
+    bottom: 0;                              /* Gruda na parte inferior */
+    left: 0;                                /* Gruda na esquerda */
+    width: 100%;                            /* Ocupa toda largura */
+    background-color: var(--pp-sidebar-bg); /* Fundo escuro */
+    color: var(--pp-white);                 /* Texto branco */
+    z-index: 1000;                          /* Z-index alto para ficar sobre tudo */
+    padding: 10px 0;                        /* Espaçamento vertical */
+    border-top: 1px solid rgba(255,255,255,0.1); /* Borda superior sutil e transparente */
+}
+
+.pp-logo { 
+    display: none;                          /* Esconde o logo no mobile (só aparece no desktop) */
+}
+
+.pp-nav ul {
+    display: flex;                          /* Layout flexível horizontal */
+    justify-content: space-around;          /* Distribui itens igualmente */
+    align-items: center;                    /* Centraliza verticalmente */
+    list-style: none;
+}
+
+
+
+.pp-nav a {
+    display: flex;                          /* Cada item da navegação é flex */
+    flex-direction: column;                 /* Ícone em cima, texto embaixo (mobile) */
+    align-items: center;                    /* Centraliza horizontalmente */
+    gap: 4px;                               /* Espaço entre ícone e texto */
+    font-size: 0.65rem;                     /* Texto pequeno (mobile) */
+    color: var(--pp-text-muted);                         /* Cinza claro para ícones/texto inativos */
+    cursor: pointer;                        /* Cursor de mão */
+    transition: 0.3s;                       /* Transição suave */
+    text-decoration: none;
+
+}
+
+.pp-nav a.active { 
+    color: var(--pp-primary);               /* Item ativo fica com a cor primária (roxo) */
+}
+
+/* 
+ * ============================================
+ * 8. CONTEÚDO PRINCIPAL
+ * ============================================
+ */
+
+.pp-content {
+    grid-area: content;                     /* Posiciona na área 'content' do grid */
+    padding: 1.5rem;                        /* Espaçamento interno */
+}
+
+.pp-grid {
+    display: grid;                          /* Grid para organizar os cards */
+    gap: 1.2rem;                            /* Espaçamento entre os cards */
+    grid-template-columns: 1fr;             /* Uma coluna (mobile) */
+}
+
+/* 
+ * ============================================
+ * 9. CARDS (COMPONENTES DE DADOS)
+ * ============================================
+ */
+
+.pp-card {
+    background-color: var(--pp-card-bg);    /* Fundo branco */
+    padding: 1.5rem;                        /* Espaçamento interno */
+    border-radius: 12px;                    /* Bordas arredondadas */
+    border: 1px solid var(--pp-border);     /* Borda sutil */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.02); /* Sombra muito suave */
+}
+
+.pp-card h3 { 
+    font-family: var(--pp-font-secondary);  /* Fonte destacada para o título do card */
+    font-size: 0.75rem;                     /* Texto pequeno (estilo label) */
+    color: var(--pp-text-muted);            /* Cor secundária */
+    text-transform: uppercase;              /* Todas as letras maiúsculas */
+    display: flex;                          /* Flex para alinhar ícone */
+    align-items: center;                    /* Centraliza verticalmente */
+    gap: 8px;                               /* Espaço entre ícone e texto */
+    margin-bottom: 1rem;                    /* Espaço abaixo do título */
+}
+
+/* falta */
+
+.pp-item {
+    display: flex;                           /* Torna o container flexível */
+    justify-content: space-between;          /* Espaço igual entre os filhos */
+    align-items: center;                    /* Alinha os filhos verticalmente ao centro */
+    padding: 10px 0;                        /* Espaçamento interno: 10px em cima/baixo, 0 nas laterais */
+    border-bottom: 1px solid var(--pp-border); /* Borda inferior com cor vinda da variável --pp-border */
+}
+
+.pp-item:last-child { border: none; }       /* Remove a borda inferior do último item */
+
+.pp-item-text {
+    display: flex;                           /* Torna o container flexível */
+    flex-direction: column;                 /* Organiza os filhos em coluna (um abaixo do outro) */
+}
+
+.pp-item-text small {
+    color: var(--pp-text-muted);            /* Define a cor do texto small usando a variável --pp-text-muted */
+}
+
+/* fim */
+
+
+.pp-value { 
+    font-size: 1.8rem;                      /* Número grande e destacado */
+    font-weight: 700;                       /* Negrito máximo */
+}
+
+.pp-trend-up { 
+    color: var(--pp-success);               /* Cor de sucesso/positivo (definir a variável --pp-success) */
+    font-size: 0.8rem;                      /* Texto pequeno */
+    font-weight: 500;                       /* Peso médio */
+}
+
+.pp-alert-val { 
+    color: var(--pp-danger);                /* Cor de perigo/alerta (definir a variável --pp-danger) */
+    font-weight: 600;                       /* Semi-negrito */
+}
+
+.pp-time-tag { 
+    background-color: var(--pp-primary-soft); /* Fundo com a cor primária transparente */
+    color: var(--pp-primary);               /* Texto na cor primária */
+    padding: 4px 10px;                      /* Espaçamento interno */
+    border-radius: 6px;                     /* Bordas levemente arredondadas */
+    font-weight: 600;                       /* Semi-negrito */
+    font-size: 0.8rem;                      /* Tamanho médio-pequeno */
+}
+
+/* 
+ * ============================================
+ * 10. MEDIA QUERY - LAYOUT DESKTOP (TELA >= 1024px)
+ * ============================================
+ * Este bloco só se aplica quando a largura da tela é de 1024px ou mais
+ * Transforma o layout de mobile para desktop
+ */
+
+@media (min-width: 1024px) {
+    /* Remove o padding-bottom do body no desktop */
+    body { 
+        padding-bottom: 0; 
+    }
+
+    /* 
+     * ===== NOVO GRID DESKTOP =====
+     * Grid com 2 colunas: sidebar (260px) e conteúdo (restante)
+     * E 2 linhas: header (70px) e content (restante)
+     */
+    .pp-wrapper {
+        height: 100vh;                      /* Altura total da viewport */
+        grid-template-columns: 260px 1fr;   /* Sidebar fixa 260px, resto flexível */
+        grid-template-rows: 70px 1fr;       /* Header 70px, resto flexível */
+        grid-template-areas: 
+            "sidebar header"                /* Primeira linha: sidebar à esquerda, header à direita */
+            "sidebar content";              /* Segunda linha: sidebar à esquerda, conteúdo à direita */
+    }
+
+    /* 
+     * ===== SIDEBAR DESKTOP =====
+     * Agora fixa à esquerda, não mais na parte inferior
+     */
+    .pp-sidebar {
+        position: static;                   /* Posicionamento normal (não fixo) */
+        display: block;                     /* Exibe como bloco */
+        padding: 2rem 1.5rem;               /* Mais espaçamento */
+        border-top: none;                   /* Remove a borda superior do mobile */
+    }
+
+    /* 
+     * ===== LOGO DESKTOP =====
+     * Agora visível no desktop
+     */
+    .pp-logo {
+        display: flex;                      /* Exibe como flex */
+        align-items: center;                /* Centraliza verticalmente */
+        gap: 12px;                          /* Espaço entre ícone e texto */
+        margin-bottom: 3rem;                /* Espaço abaixo do logo */
+        color: var(--pp-primary);           /* Cor primária */
+        font-family: var(--pp-font-secondary); /* Fonte destacada */
+        font-size: 1.3rem;                  /* Tamanho maior */
+    }
+
+    /* 
+     * ===== NAVEGAÇÃO DESKTOP =====
+     * Agora vertical (empilhada) em vez de horizontal
+     */
+    .pp-nav ul {
+        flex-direction: column;             /* Empilha verticalmente */
+        align-items: flex-start;            /* Alinha à esquerda */
+        gap: 8px;                           /* Espaço entre itens */
+    }
+
+    .pp-nav li{
+        width: 100%;
+    }
+
+    .pp-nav a {
+        display: flex;
+        flex-direction: row;                /* Ícone ao lado do texto (horizontal) */
+        font-size: 0.95rem;                 /* Texto maior */
+        padding: 12px;                      /* Mais área clicável */
+        border-radius: 8px;                 /* Bordas arredondadas */
+        gap: 15px;                          /* Mais espaço entre ícone e texto */
+    }
+
+    /* Efeito hover nos itens da navegação (exceto o ativo) */
+    .pp-nav a:hover:not(.active) { 
+        background-color: rgba(255,255,255,0.05); /* Fundo branco bem transparente */
+        color: var(--pp-white);             /* Texto branco */
+    }
+
+    /* Item ativo da navegação no desktop */
+    .pp-nav a.active { 
+        background-color: var(--pp-primary); /* Fundo roxo */
+        color: var(--pp-white);             /* Texto branco */
+    }
+
+    /* 
+     * ===== HEADER DESKTOP =====
+     */
+    .pp-header { 
+        height: 70px;                       /* Altura fixa */
+        padding: 0 2.5rem;                  /* Mais espaçamento lateral */
+    }
+
+    .pp-header h1 { 
+        font-size: 1.5rem;                  /* Título maior no desktop */
+    }
+
+    /* 
+     * ===== GRID DE CARDS DESKTOP =====
+     * Responsivo: quantos cards couberem, com mínimo de 300px cada
+     */
+    .pp-grid {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        /* 
+         * auto-fit: ajusta automaticamente o número de colunas
+         * minmax(300px, 1fr): cada card tem no mínimo 300px e no máximo 1 fração do espaço
+         */
+    }
+
+    /* 
+     * ===== CARD QUE OCUPA 2 COLUNAS =====
+     * Para cards que precisam de mais espaço (como gráficos ou tabelas)
+     */
+    .pp-card-lg { 
+        grid-column: span 2;                /* Ocupa 2 colunas do grid */
+    }
+}
