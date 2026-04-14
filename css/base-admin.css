@@ -50,6 +50,7 @@
     --pp-sidebar-bg: #1e293b;           /* Fundo escuro (azul marinho) para a sidebar */
     --pp-border: #e2e8f0;               /* Cor das bordas (cinza claro) */
     --pp-white: #ffffff;                /* Branco puro */
+    --bg-destaque: #eef2ff;
 
     /* --- CORES DE TEXTO E TIPOGRAFIA --- */
     --pp-text-main: #1e293b;            /* Cor principal do texto (cinza escuro) */
@@ -73,6 +74,31 @@
     box-sizing: border-box;
 }
 
+/* Quando estiver checado, trocamos os valores das variáveis */
+#theme-switch:checked ~ .app {
+    --pp-bg: #0f172a;           /* Fundo Navy profundo */
+    --pp-header-bg: #1e293b;    /* Slate escuro para o topo */
+    --pp-card-bg: #1e293b;      /* Cards acompanham o header */
+    --pp-sidebar-bg: #020617;   /* Sidebar quase preta para contraste */
+    --pp-border: #334155;       /* Bordas em tom Slate azulado */
+    --pp-text-main: #f1f5f9;    /* Branco acinzentado (não cansa a vista) */
+    --pp-text-muted: #94a3b8;   /* Texto secundário */
+    --bg-destaque: rgba(32, 59, 103, 0.8);
+}
+
+/* Trocando o ícone visualmente quando checado */
+#theme-switch:checked ~ .app .theme-icon-dark { display: none; }
+#theme-switch:checked ~ .app .theme-icon-light { 
+    display: inline-block !important; 
+    color: #facc15; /* Cor amarela para o sol */
+}
+
+/* Garante que os cards e o body mudem de cor suavemente */
+.app, .pp-card, .pp-header, .pp-sidebar {
+    transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease;
+}
+/* fim */
+
 /* 
  * ============================================
  * 4. ESTILOS DO CORPO DA PÁGINA (BODY)
@@ -88,30 +114,6 @@ body {
     -webkit-font-smoothing: antialiased;     /* Suaviza fontes no WebKit (Chrome, Safari) */
 }
 
-/* Quando estiver checado, trocamos os valores das variáveis */
-#theme-switch:checked ~ .app {
-    --pp-bg: #0f172a;           /* Fundo Navy profundo */
-    --pp-header-bg: #1e293b;    /* Slate escuro para o topo */
-    --pp-card-bg: #1e293b;      /* Cards acompanham o header */
-    --pp-sidebar-bg: #020617;   /* Sidebar quase preta para contraste */
-    --pp-border: #334155;       /* Bordas em tom Slate azulado */
-    
-    --pp-text-main: #f1f5f9;    /* Branco acinzentado (não cansa a vista) */
-    --pp-text-muted: #94a3b8;   /* Texto secundário */
-}
-
-/* Trocando o ícone visualmente quando checado */
-#theme-switch:checked ~ .app .theme-icon-dark { display: none; }
-#theme-switch:checked ~ .app .theme-icon-light { 
-    display: inline-block !important; 
-    color: #facc15; /* Cor amarela para o sol */
-}
-
-/* Garante que os cards e o body mudem de cor suavemente */
-.app, .pp-card, .pp-header, .pp-sidebar {
-    transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease;
-}
-/* fim */
 
 /* 
  * ============================================
@@ -151,6 +153,7 @@ body {
 .pp-header h1 { 
     font-family: var(--pp-font-secondary);  /* Título usa fonte Montserrat (mais destacada) */
     font-size: 1.1rem;                      /* Tamanho médio (mobile) */
+    color: var(--pp-text-main);
 }
 
 .pp-header-actions {
@@ -213,7 +216,7 @@ body {
     cursor: pointer;                        /* Cursor de mão */
     transition: 0.3s;                       /* Transição suave */
     text-decoration: none;
-
+    font-weight: 700;
 }
 
 .pp-nav a.active { 
@@ -229,6 +232,7 @@ body {
 .pp-content {
     grid-area: content;                     /* Posiciona na área 'content' do grid */
     padding: 1.5rem;                        /* Espaçamento interno */
+    background-color: var(--bg-destaque)
 }
 
 .pp-grid {
@@ -249,6 +253,7 @@ body {
     border-radius: 12px;                    /* Bordas arredondadas */
     border: 1px solid var(--pp-border);     /* Borda sutil */
     box-shadow: 0 2px 4px rgba(0,0,0,0.02); /* Sombra muito suave */
+    color: var(--pp-text-main);
 }
 
 .pp-card h3 { 
