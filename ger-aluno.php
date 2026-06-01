@@ -59,7 +59,6 @@
     <div class="mt-5">
       <h4>Cadastro de Aluno</h4>
     </div>
-    <div class="card">
       <form action="db-aluno.php" method="post">
         <input type="hidden" name="id" value="<?= $aluno->idaluno ?? null; ?>">
         <fieldset class="border p-3 mb-3">
@@ -118,7 +117,7 @@
             </div>
             <div class="col-md-3">
               <label for="cep" class="form-label">Cep</label>
-              <input type="text" name="cep" id="cep" class="form-control" value="<?= $aluno->cep ?? null; ?>">
+              <input type="text" name="cep" id="cep" class="form-control" value="<?= $aluno->cep ?? null; ?>" data-mascara="00000-000">
             </div>
             <div class="col-md-9">
               <label for="logradouro" class="form-label">Logradouro</label>
@@ -161,11 +160,11 @@
           <button type="submit" class="btn btn-primary" name="btnGravar">Salvar</button>
         </div>
       </form>
-    </div>
 
   </main>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/utils.js"></script>
 </body>
 
 </html>
