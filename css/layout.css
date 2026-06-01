@@ -26,6 +26,8 @@
     --padding-secao: 80px;           /* Espaço de separação entre um bloco e outro */
     --gap-padrao: 25px;              /* Distância entre um card e seu vizinho */
 
+    --altura-menu:80px;
+
     /* BORDAS */
     --borda-arredondada: 12px;       /* Define o quanto os cantos serão arredondados */
 }
@@ -69,6 +71,7 @@ body {
     z-index: 1000;                   /* Garante que o menu fique por cima de todos os elementos */
     padding: 0 var(--padding-padrao);/* Aplica o respiro lateral de 40px */
     transition: width 0.3s ease, background-color 0.3s ease; /* Suaviza mudanças de tamanho/cor */
+    height: var(--altura-menu);
 }
 
 .logo {
@@ -125,7 +128,13 @@ body {
 }
 
 .page-title-full {
-    height: 100vh;                   /* Faz o banner ocupar 100% da altura da tela visível */
+    height: calc(100vh - var(--altura-menu)); /* Faz o banner ocupar 100% da altura da tela visível */
+    color: var(--cor-texto-escuro);
+    background-image: url('../img/banner.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    text-shadow: 0 10px 15px var(--cor-destaque-sec);
 }
 
 .page-title h1 {

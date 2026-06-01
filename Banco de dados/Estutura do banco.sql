@@ -3,10 +3,10 @@
    ============================================================ */
 
 -- Cria o banco de dados se ele ainda não existir, definindo o padrão de letras (acentuação)
-CREATE SCHEMA personal_trainer DEFAULT CHARACTER SET utf8mb4;
+CREATE SCHEMA personal_trainer3a DEFAULT CHARACTER SET utf8mb4;
 
 -- Indica ao sistema que vamos usar este banco de dados para as próximas tabelas
-USE personal_trainer;
+USE personal_trainer3a;
 
 /* ============================================================
    TABELA: USUÁRIO (O coração do sistema, onde todos se cadastram)

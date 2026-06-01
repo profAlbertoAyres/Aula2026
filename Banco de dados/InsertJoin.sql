@@ -1,4 +1,4 @@
-USE personal_trainer;
+USE personal_trainer3a;
 
 -- USUÁRIOS
 
