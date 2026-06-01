@@ -11,107 +11,104 @@
     <title>Painel</title>
 </head>
 
-<body class="admin-body">
-
-    <aside class="admin-sidebar" id="admin-sidebar">
-        <div class="admin-sidebar-header">
-            <button id="toggle-admin-sidebar" class="btn-icon"><i class="bi bi-list"></i></button>
-            <span class="logo-admin">Personal<span>Pro</span></span>
-            <small>
-                Painel Admin
-            </small>
-        </div>
-
-        <nav class="admin-sidebar-nav">
-            <ul>
-                <li>
-                    <a href="#" class=""><i class="bi bi-speedometer2"></i><span> Dashboard</span></a>
-                </li>
-                <li class="separator"></li>
-                <li><a href="#"><i class="bi bi-person-gear"></i><span> Administradores</span></a></li>
-                <li><a href="#"><i class="bi bi-person-badge"></i><span> Personal trainers</span></a></li>
-                <li><a href="#"><i class="bi bi-person"></i><span> Alunos</span></a></li>
-                <li class="separator"></li>
-                <li><a href="#"><i class="bi bi-activity"></i><span> Exercicio</span></a></li>
-                <li><a href="#"><i class="bi bi-heart-pulse"></i><span> Treino</span></a></li>
-                <li class="separator"></li>
-                <li><a href="#"><i class="bi bi-calendar-event"></i><span> Agenda</span></a></li>
-                <li><a href="#"><i class="bi bi-clipboard-data"></i><span> Avaliação</span></a></li>
-                <li><a href="#"><i class="bi bi-bi-chat-quote"></i><span> Depoimento</span></a></li>
-
-                <li class="separator"></li>
-                <li><a href="#"><i class="bi bi-cash-coin"></i><span> Mensalidade</span></a></li>
-                <li class="separator"></li>
-                <li><a href="#"><i class="bi bi-box-arrow-up-right"></i><span> Ver Website</span></a></li>
-            </ul>
-        </nav>
-
-        <div class="admin-sidebar-footer">
-            <div class="user-info">
-                <i class="bi bi-person-circle"></i>
-                <span>Admin</span>
-            </div>
-            <a href="#" class="link_adm">
-                <i class="bi bi-key"></i>
-                <span>Alterar Senha</span>
-            </a>
-            <form action="#" method="post">
-                <button type="submit" class="logout-btn">
-                    <i class="bi bi-box-arrow-left"></i><span> Sair</span>
-                </button>
-            </form>
-        </div>
-    </aside>
-
-    <main class="main-content">
-        <header class="top-header" id="top-header">
-            <div class="top-actions">
-                <span class="date"></span>
-                <i class="bi bi-bell"></i>
+<body>
+    <input type="checkbox" id="theme-switch" style="display: none;">
+    <div class="app pp-wrapper">
+        <!-- Menu Híbrido -->
+        <aside class="pp-sidebar">
+            <h2 class="pp-logo">
+                <span class="material-symbols-outlined">fitness_center</span>
+                PersonalPro
+            </h2>
+            <nav class="pp-nav">
+                <ul>
+                    <li class="active">
+                        <a href="#">
+                            <span class="material-symbols-outlined">dashboard</span>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span class="material-symbols-outlined">groups</span>
+                            <span>Alunos</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span class="material-symbols-outlined">calendar_month</span>
+                            <span>Agenda</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span class="material-symbols-outlined">payments</span>
+                            <span>Financeiro</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+        <header class="pp-header">
+            <h1>Visão Geral</h1>
+            <div class="pp-header-actions">
+                <label for="theme-switch" class="theme-toggle-label pp-icon-btn">
+                    <span class="material-symbols-outlined theme-icon-dark">dark_mode</span>
+                    <span class="material-symbols-outlined theme-icon-light" style="display: none;">light_mode</span>
+                </label>
+                <span class="material-symbols-outlined pp-icon-btn">notifications</span>
+                <span class="material-symbols-outlined pp-icon-btn">account_circle</span>
             </div>
         </header>
 
-        <div class="admin-container">
-            <div class="msn">
-            </div>
-            <div class="title-painel-admin">
-                <h2>Painel de Controle Administrativo</h2>
-                <p>Visão geral da plataforma PersonalPro.</p>
-            </div>
+        <main class="pp-content">
+            <div class="pp-grid">
 
-            <div class="linha-cards">
-                <div class="card-item border-top-blue">
-                    <small>Total de Personal trainers</small>
-                    <h3 >{{ total_personals }}</h3>
+                <!-- Card Métricas -->
+                <div class="pp-card">
+                    <h3><span class="material-symbols-outlined">group</span> Total Alunos</h3>
+                    <p class="pp-value">42</p>
+                    <span class="pp-trend pp-trend-up">↑ 12% este mês</span>
                 </div>
-                <div class="card-item border-top-green">
-                    <small>Total de Alunos</small>
-                    <h3 >{{ total_student }}</h3>
+
+                <!-- Card Agenda -->
+                <div class="pp-card">
+                    <h3><span class="material-symbols-outlined">event_note</span> Agenda Hoje</h3>
+                    <div class="pp-item">
+                        <div class="pp-item-text"><strong>Ana Silva</strong><small>Treino de Pernas</small></div>
+                        <span class="pp-time-tag">08:00</span>
+                    </div>
+                    <div class="pp-item">
+                        <div class="pp-item-text"><strong>Marcos V.</strong><small>Avaliação</small></div>
+                        <span class="pp-time-tag">09:30</span>
+                    </div>
                 </div>
-                <div class="card-item border-top-orange">
-                    <small>Novos hoje</small>
-                    <h3>+5</h3>
+
+                <!-- Card Gráfico (Largo) -->
+                <div class="pp-card pp-card-lg">
+                    <h3><span class="material-symbols-outlined">monitoring</span> Atividade Semanal</h3>
+                    <div class="pp-chart-box">Gráfico de Desempenho</div>
                 </div>
+
+                <!-- Card Aniversários -->
+                <div class="pp-card">
+                    <h3><span class="material-symbols-outlined">cake</span> Aniversariantes</h3>
+                    <div class="pp-item">
+                        <div class="pp-item-text"><strong>Ricardo Jorge</strong><small>Hoje (11/04)</small></div>
+                        <span class="material-symbols-outlined pp-icon-celebrate">celebration</span>
+                    </div>
+                </div>
+
+                <!-- Card Alertas -->
+                <div class="pp-card">
+                    <h3><span class="material-symbols-outlined">warning</span> Alertas</h3>
+                    <p class="pp-alert-val">3 Mensalidades</p>
+                    <small>Pendentes de pagamento</small>
+                </div>
+
             </div>
-
-            <div class="card-item">
-                <h4>Personais Recém Cadastrados</h4>
-                <p>Lista de professores que aguardam revisão ou iniciaram agora.</p>
-            </div>
-        </div>
-    </main>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        // Script básico para o toggle da admin-sidebar no mobile
-        document.getElementById('toggle-admin-sidebar').addEventListener('click', function () {
-            document.getElementById('admin-sidebar').classList.toggle('active');
-            document.getElementById('top-header').classList.toggle('admin-sidebar-open')
-        });
-    </script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
-
+        </main>
+    </div> <!-- Fim Wrapper -->
 </body>
 
 </html>
