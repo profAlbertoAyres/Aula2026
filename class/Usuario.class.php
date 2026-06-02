@@ -22,7 +22,9 @@ class Usuario extends CRUD
         $stmt->bindParam(":tipo_usuario", $this->tipoUsuario, PDO::PARAM_STR);
         $stmt->bindParam(":ativo", $this->ativo, PDO::PARAM_INT);
 
-        return $stmt->execute();
+        $stmt->execute();
+
+        $this->id = $this->db->lastInsertId();
     }
 
     public function update()

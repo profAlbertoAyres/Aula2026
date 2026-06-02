@@ -1,12 +1,12 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Seleção dos elementos principais da nossa interface
+    // --- SELEÇÃO DE ELEMENTOS CONTROLE ---
     const form = document.querySelector('form');
     const campoCep = document.querySelector('#cep');
     const senha = document.querySelector('#senha');
     const confirma = document.querySelector('#confirma_senha');
     const btnSalvar = document.querySelector('button[name="btnGravar"]');
 
-    // 1. MÁSCARA DINÂMICA: Aplica formatação automática baseada no HTML
+    // --- 1. MÁSCARA DINÂMICA (Baseada em Atributo data-*) ---
     document.querySelectorAll('[data-mascara]').forEach(input => {
         input.addEventListener('input', (e) => {
             const padrao = e.target.dataset.mascara;
@@ -19,35 +19,69 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // 2. BUSCA DE CEP: Consulta a API ViaCEP quando o campo perde o foco
-    campoCep.addEventListener('blur', async () => {
-        let cep = campoCep.value.replace(/\D/g, '');
-        if (cep.length !== 8) return;
+    // --- 2. BUSCA DE CEP AUTOMÁTICA (Fetch API ViaCEP) ---
+    if (campoCep) {
+        campoCep.addEventListener('blur', async () => {
+            let cep = campoCep.value.replace(/\D/g, '');
+            if (cep.length !== 8) return;
 
-        const res = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
-        const dados = await res.json();
-        if (!dados.erro) {
-            document.querySelector('#logradouro').value = dados.logradouro;
-            document.querySelector('#bairro').value = dados.bairro;
-            document.querySelector('#cidade').value = dados.localidade;
-            document.querySelector('#estado').value = dados.uf;
-        }
-    });
+            try {
+                const res = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
+                const dados = await res.json();
+                if (!dados.erro) {
+                    document.querySelector('#logradouro').value = dados.logradouro;
+                    document.querySelector('#bairro').value = dados.bairro;
+                    document.querySelector('#cidade').value = dados.localidade;
+                    document.querySelector('#estado').value = dados.uf;
+                }
+            } catch (erro) {
+                console.error("Falha na requisição de endereço: ", erro);
+            }
+        });
+    }
 
-    // 3. VALIDAÇÃO DE SENHA: Garante que as senhas coincidem e não estão vazias
-    const validar = () => {
-        const erro = senha.value === "" || senha.value !== confirma.value;
-        confirma.style.borderColor = erro ? 'red' : 'green';
-        btnSalvar.disabled = erro;
-    };
-    senha.addEventListener('input', validar);
-    confirma.addEventListener('input', validar);
+    // --- 3. EXIBIÇÃO E VALIDAÇÃO DE CREDENCIAIS (Senhas) ---
+    if (senha && confirma && btnSalvar) {
+        const configurarToggleSenha = (btnId, inputId) => {
+            const btn = document.querySelector(btnId);
+            if (!btn) return;
+            const input = document.querySelector(inputId);
+            const icone = btn.querySelector('i');
 
-    // 4. VALIDAÇÃO BOOTSTRAP: O "juiz" final antes do envio ao banco
-    form.addEventListener('submit', (e) => {
-        if (!form.checkValidity()) {
-            e.preventDefault();
-            form.classList.add('was-validated');
-        }
-    });
+            btn.addEventListener('click', () => {
+                const tipo = input.getAttribute('type') === 'password' ? 'text' : 'password';
+                input.setAttribute('type', tipo);
+                icone.classList.toggle('bi-eye');
+                icone.classList.toggle('bi-eye-slash');
+            });
+        };
+
+        configurarToggleSenha('#toggleSenha', '#senha');
+        configurarToggleSenha('#toggleConfirma', '#confirma_senha');
+
+        const validar = () => {
+            const erro = senha.value === "" || senha.value !== confirma.value;
+            confirma.style.borderColor = erro ? 'red' : 'green';
+            btnSalvar.disabled = erro;
+        };
+        senha.addEventListener('input', validar);
+        confirma.addEventListener('input', validar);
+    }
+
+    if (form) {
+        form.addEventListener('submit', (e) => {
+            if (!form.checkValidity()) {
+                e.preventDefault();
+                form.classList.add('was-validated');
+            }
+        });
+    }
+
+    const alerta = document.getElementById('msgAlerta');
+    if (alerta) {
+        setTimeout(() => {
+            const bsAlert = new bootstrap.Alert(alerta);
+            bsAlert.close();
+        }, 4000);
+    }
 });

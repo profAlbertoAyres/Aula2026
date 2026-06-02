@@ -63,7 +63,7 @@ class Aluno extends CRUD{
     }
 
     public function setFkUsuario($fkUsuario){
-        $this->$fkUsuario = (int)$fkUsuario;
+        $this->fkUsuario = (int)$fkUsuario;
     }
     
     public function getNome(){
