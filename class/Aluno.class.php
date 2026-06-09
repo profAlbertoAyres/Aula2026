@@ -18,7 +18,7 @@ class Aluno extends CRUD{
     public function add(){
         $sql = "INSERT INTO $this->table (fkusuario, nome, sexo, nascimento, celular, logradouro, bairro, cidade, estado, cep, objetivo) VALUES( :fkusuario, :nome, :sexo, :nascimento, :celular, :logradouro, :bairro, :cidade, :estado, :cep, :objetivo)";
         $stmt = $this->db->prepare($sql);
-        $stmt->bindParam(":fkusuario", $this->fkUsuario, PDO::PARAM_STR);
+        $stmt->bindParam(":fkusuario", $this->fkUsuario, PDO::PARAM_INT);
         $stmt->bindParam(":nome", $this->nome, PDO::PARAM_STR);
         $stmt->bindParam(":sexo", $this->sexo, PDO::PARAM_STR);
         $stmt->bindParam(":nascimento",$this->nascimento, PDO::PARAM_STR);
@@ -33,10 +33,9 @@ class Aluno extends CRUD{
     }
 
     public function update(){
-        $sql = "UPDATE $this->table SET fkusuario = :fkusuario, nome = :nome, sexo = :sexo, nascimento = :nascimento, celular = :celular, logradouro = :logradouro, bairro = :bairro, cidade = :cidade, estado = :estado, cep = :cep, objetivo = :objetivo WHERE idaluno = :id;";
+        $sql = "UPDATE $this->table SET nome = :nome, sexo = :sexo, nascimento = :nascimento, celular = :celular, logradouro = :logradouro, bairro = :bairro, cidade = :cidade, estado = :estado, cep = :cep, objetivo = :objetivo WHERE idaluno = :id;";
         $stmt = $this->db->prepare($sql);
         $stmt->bindParam(":id",$this->id, PDO::PARAM_INT);
-        $stmt->bindParam(":fkusuario", $this->fkUsuario, PDO::PARAM_STR);
         $stmt->bindParam(":nome", $this->nome, PDO::PARAM_STR);
         $stmt->bindParam(":sexo", $this->sexo, PDO::PARAM_STR);
         $stmt->bindParam(":nascimento",$this->nascimento, PDO::PARAM_STR);

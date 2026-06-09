@@ -39,17 +39,17 @@
         break;
     }
     ?>
-    <div id="msgAlerta" class="alert <?= $classe ?> alert-dismissible fade show" role="alert">
-      <?= $mensagem ?>
-      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
 
-  <?php endif; ?>
-  <main class="container">
-    <div class="mt-5 d-flex justify-content-between p-5">
-      <h3>Alunos</h3>
-      <a href="ger-aluno.php" class="btn btn-success">Novo Aluno</a>
-    </div>
+<?php endif; ?>
+<main class="container">
+  <div class="mt-5 d-flex justify-content-between p-5">
+    <h3>Alunos</h3>
+    <a href="ger-aluno.php" class="btn btn-success">Novo Aluno</a>
+  </div>
+  <div id="msgAlerta" class="alert <?= $classe ?> alert-dismissible fade show" role="alert">
+    <?= $mensagem ?>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
 
     <div class="mb-3 d-flex gap-2 justify-content-center">
       <div class="col-md-6">
@@ -71,7 +71,7 @@
       <tbody>
         <?php foreach ($alunos as $alu): ?>
           <tr>
-            <td><?php echo $alu->idaluno ?></td>
+            <td class="text-center"><?php echo $alu->idaluno ?></td>
             <td><?php echo $alu->nome ?></td>
             <td><?php echo $alu->celular ?></td>
             <td></td>

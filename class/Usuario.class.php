@@ -25,6 +25,8 @@ class Usuario extends CRUD
         $stmt->execute();
 
         $this->id = $this->db->lastInsertId();
+
+        return $this->id;
     }
 
     public function update()
